@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "242455371210",
+    "project_id": "depense-reserve-ia",
+    "storage_bucket": "depense-reserve-ia.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:242455371210:android:be3ac7b2c6fa909e010333",
+        "android_client_info": {
+          "package_name": "com.ecopanier.budgetia"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBa0QQZ-L77Vt4rmrP9IJXRhC-ygcukcww"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

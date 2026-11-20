@@ -1,0 +1,42 @@
+{
+  "app": {
+    "title": "EcoPanier & Budget IA",
+    "subtitle": "Reliez votre réserve domestique à votre budget mensuel"
+  },
+  "navigation": {
+    "previousMonth": "Mois précédent",
+    "nextMonth": "Mois suivant",
+    "statusOpen": "Mois en cours",
+    "statusClosed": "Clôturé"
+  },
+  "budget": {
+    "realDisposableIncome": "Reste à vivre réel",
+    "globalAllocated": "Budget mensuel alloué",
+    "fixedChargesAutoDebited": "Charges fixes débitées le 1er",
+    "variableSpent": "Dépenses variables du mois",
+    "recurringTemplatesTitle": "Modèles de Postes Récurrents (Zéro Ressaisie)",
+    "scopeMonthOnly": "Appliquer uniquement au mois affiché",
+    "scopeMonthAndFuture": "Appliquer à ce mois et aux modèles des mois futurs"
+  },
+  "pantry": {
+    "title": "Ma Réserve Domestique",
+    "oneTapUse": "-1 Utiliser",
+    "lowStockBadge": "Stock critique (<= 1)",
+    "lowStockNotification": "Attention, il ne vous reste plus que {{qty}} {{product}} en réserve."
+  },
+  "comparator": {
+    "title": "Comparateur Quotidien (Rayon 5 km)",
+    "bestPerItemTab": "Meilleur prix par article",
+    "bestSingleStoreTab": "Meilleur magasin Panier Unique",
+    "validatePurchaseButton": "Valider l'achat & Imputer sur {{month}}"
+  },
+  "invoice": {
+    "importPdfButton": "Importer une facture PDF (Drive / e-Ticket)",
+    "duplicateBlocked": "Cette facture PDF a déjà été importée pour ce mois.",
+    "prevalidationTitle": "Pré-validation des articles extraits & ventilation budgétaire"
+  },
+  "coachAi": {
+    "title": "Coach Financier IA & Optimisations",
+    "applyOneClick": "Appliquer la recommandation en 1 clic"
+  }
+}

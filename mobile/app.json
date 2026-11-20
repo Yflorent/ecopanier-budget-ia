@@ -1,0 +1,45 @@
+{
+  "expo": {
+    "name": "EcoPanier & Budget IA",
+    "slug": "ecopanier-budget-ia",
+    "version": "3.1.0",
+    "orientation": "portrait",
+    "scheme": "ecopanier",
+    "userInterfaceStyle": "automatic",
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "com.ecopanier.budgetia",
+      "infoPlist": {
+        "NSLocationWhenInUseUsageDescription": "Votre position GPS permet de filtrer les supermarchés les moins chers dans un rayon strict de 5 km autour de votre domicile.",
+        "NSCameraUsageDescription": "La caméra permet de scanner les codes-barres EAN-13 et de photographier vos tickets de caisse pour réapprovisionner la réserve.",
+        "NSFaceIDUsageDescription": "Déverrouillez rapidement votre espace financier sécurisé avec FaceID."
+      }
+    },
+    "android": {
+      "package": "com.ecopanier.budgetia",
+      "permissions": [
+        "ACCESS_COARSE_LOCATION",
+        "ACCESS_FINE_LOCATION",
+        "CAMERA",
+        "USE_BIOMETRIC",
+        "RECEIVE_BOOT_COMPLETED"
+      ],
+      "intentFilters": [
+        {
+          "action": "SEND",
+          "data": [
+            {
+              "mimeType": "application/pdf"
+            },
+            {
+              "mimeType": "image/*"
+            }
+          ],
+          "category": [
+            "DEFAULT"
+          ]
+        }
+      ]
+    }
+  }
+}

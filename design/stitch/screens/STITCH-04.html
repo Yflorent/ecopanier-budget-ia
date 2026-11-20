@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+
+<html class="h-full" lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Modèles de Postes Récurrents - STITCH-04</title>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;family=Space+Grotesk:wght@500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "surface-container-highest": "#dce4e8",
+            "tertiary": "#006499",
+            "on-error-container": "#6e0a12",
+            "on-surface-variant": "#596064",
+            "background": "#f7f9fb",
+            "on-tertiary-fixed": "#000d19",
+            "on-background": "#2c3437",
+            "secondary-container": "#e2dfff",
+            "tertiary-fixed-dim": "#40a2e7",
+            "secondary": "#4e45e4",
+            "primary-dim": "#005e57",
+            "on-tertiary": "#f6f9ff",
+            "surface-bright": "#f7f9fb",
+            "tertiary-container": "#51b0f6",
+            "inverse-primary": "#a7fef3",
+            "primary": "#006b63",
+            "on-surface": "#2c3437",
+            "inverse-on-surface": "#9a9d9f",
+            "error": "#a83836",
+            "surface-tint": "#006b63",
+            "surface-container-high": "#e3e9ed",
+            "secondary-fixed-dim": "#d2d0ff",
+            "on-secondary-fixed": "#2a13c5",
+            "surface": "#f7f9fb",
+            "inverse-surface": "#0b0f10",
+            "tertiary-fixed": "#51b0f6",
+            "on-primary-fixed": "#004842",
+            "outline-variant": "#acb3b7",
+            "surface-container-low": "#f0f4f7",
+            "surface-container-lowest": "#ffffff",
+            "error-dim": "#67040d",
+            "on-error": "#fff7f6",
+            "tertiary-dim": "#005886",
+            "on-tertiary-fixed-variant": "#003655",
+            "on-secondary-fixed-variant": "#4a40e0",
+            "surface-dim": "#d4dbdf",
+            "primary-fixed": "#9cf2e8",
+            "secondary-fixed": "#e2dfff",
+            "on-secondary-container": "#3f33d6",
+            "primary-container": "#9cf2e8",
+            "surface-container": "#eaeff2",
+            "error-container": "#fa746f",
+            "on-primary-container": "#005c56",
+            "secondary-dim": "#4135d8",
+            "on-primary-fixed-variant": "#006760",
+            "surface-variant": "#dce4e8",
+            "on-secondary": "#fbf7ff",
+            "primary-fixed-dim": "#8ee4d9",
+            "outline": "#747c80",
+            "on-primary": "#e2fffa",
+            "on-tertiary-container": "#002d47"
+          },
+          borderRadius: {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          fontFamily: {
+            "headline": ["Plus Jakarta Sans"],
+            "display": ["Plus Jakarta Sans"],
+            "body": ["Inter"],
+            "label": ["Space Grotesk"]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-background text-on-background font-body h-full flex flex-col justify-between antialiased selection:bg-primary-container selection:text-on-primary-container">
+<!-- Top App Bar -->
+<header class="bg-surface dark:bg-inverse-surface w-full sticky top-0 z-40">
+<div class="flex justify-between items-center w-full px-4 py-3 max-w-7xl mx-auto">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container font-headline font-bold text-sm" data-alt="A detailed digital user profile avatar showing a stylized professional icon with soft lighting and minimalist design aesthetic, matching the light mode color scheme.">
+<span class="material-symbols-outlined text-xl">person</span>
+</div>
+<div>
+<span class="text-xs text-on-surface-variant font-label block">Modèles Récurrents</span>
+<h1 class="text-lg font-headline font-bold text-primary dark:text-inverse-primary">Novembre 2026</h1>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<button class="w-10 h-10 rounded-xl flex items-center justify-center text-on-surface-variant hover:bg-surface-container dark:hover:bg-surface-container-high transition-all duration-200">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-1 max-w-7xl w-full mx-auto px-4 py-6 pb-28 space-y-6"><div class="bg-surface-container-lowest rounded-xl p-4 shadow-sm border border-surface-container-high relative overflow-hidden">
+<div class="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full blur-2xl -mr-10 -mt-10 pointer-events-none"></div>
+<div class="flex flex-col gap-2">
+<div class="flex justify-between items-center">
+<div>
+<span class="text-xs font-label text-on-surface-variant uppercase tracking-wider">Plafond Mensuel</span>
+<h2 class="text-lg font-headline font-bold text-on-surface">2 500,00 €</h2>
+</div>
+<span class="px-2.5 py-1 bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 text-xs font-bold rounded-full flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+Actif
+</span>
+</div>
+<div class="space-y-1 mt-1">
+<div class="flex justify-between text-xs font-label text-on-surface-variant">
+<span>Alloué : <strong class="text-on-surface">2 180 €</strong></span>
+<span>Disponible : <strong class="text-emerald-600">320 €</strong></span>
+</div>
+<div class="w-full h-2 bg-surface-container rounded-full overflow-hidden flex">
+<div class="bg-primary h-full rounded-full" style="width: 87%;"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-2 overflow-x-auto py-1">
+<button class="px-3 py-1.5 rounded-lg text-xs font-label font-medium bg-surface-container text-on-surface-variant hover:bg-surface-container-high transition-all shrink-0">Tous (12)</button>
+<button class="px-3 py-1.5 rounded-lg text-xs font-label font-bold bg-primary text-on-primary shadow-sm shrink-0">Charges Fixes (5)</button>
+<button class="px-3 py-1.5 rounded-lg text-xs font-label font-medium bg-surface-container text-on-surface-variant hover:bg-surface-container-high transition-all shrink-0">Variables (7)</button>
+</div>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-2.5 text-on-surface-variant text-lg">search</span>
+<input class="w-full bg-surface-container-lowest border border-surface-container-high rounded-xl pl-9 pr-4 py-2 text-xs font-body text-on-surface focus:outline-none focus:border-primary transition-all" placeholder="Rechercher un modèle..." type="text"/>
+</div>
+<div class="flex justify-between items-center pt-1">
+<h3 class="font-headline font-bold text-on-surface text-sm">Modèles permanents</h3>
+<button class="text-xs font-label text-primary font-semibold hover:underline flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">add</span> Ajouter un modèle
+</button>
+</div>
+<div class="space-y-2">
+<div class="bg-surface-container-lowest rounded-xl p-3 shadow-sm border border-surface-container-high flex items-center justify-between gap-3">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-lg bg-tertiary-container/30 text-tertiary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-base">home</span>
+</div>
+<div>
+<h4 class="font-headline font-bold text-on-surface text-xs">Loyer <span class="font-normal text-on-surface-variant">(750,00 €)</span></h4>
+<span class="text-[10px] text-on-surface-variant">Charge Fixe • Mensuel</span>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<span class="text-[10px] font-label px-2 py-0.5 rounded bg-primary/10 text-primary font-semibold">Reconduire 1er</span>
+<span class="text-[10px] font-label px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-medium">Auto-débit</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest rounded-xl p-3 shadow-sm border border-surface-container-high flex items-center justify-between gap-3">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-lg bg-amber-500/10 text-amber-600 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-base">bolt</span>
+</div>
+<div>
+<h4 class="font-headline font-bold text-on-surface text-xs">Électricité &amp; Fibre <span class="font-normal text-on-surface-variant">(140,00 €)</span></h4>
+<span class="text-[10px] text-on-surface-variant">Charge Fixe • Mensuel</span>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<span class="text-[10px] font-label px-2 py-0.5 rounded bg-primary/10 text-primary font-semibold">Reconduire 1er</span>
+<span class="text-[10px] font-label px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-medium">Auto-débit</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest rounded-xl p-3 shadow-sm border border-surface-container-high flex items-center justify-between gap-3">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-lg bg-emerald-500/10 text-emerald-600 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-base">shopping_cart</span>
+</div>
+<div>
+<h4 class="font-headline font-bold text-on-surface text-xs">Alimentation &amp; Réserve <span class="font-normal text-on-surface-variant">(450,00 €)</span></h4>
+<span class="text-[10px] text-on-surface-variant">Variable • Mensuel</span>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<span class="text-[10px] font-label px-2 py-0.5 rounded bg-primary/10 text-primary font-semibold">Reconduire 1er</span>
+<span class="text-[10px] font-label px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-medium">Auto-débit</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest rounded-xl p-3 shadow-sm border border-surface-container-high flex items-center justify-between gap-3">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-lg bg-blue-500/10 text-blue-600 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-base">directions_car</span>
+</div>
+<div>
+<h4 class="font-headline font-bold text-on-surface text-xs">Transport <span class="font-normal text-on-surface-variant">(180,00 €)</span></h4>
+<span class="text-[10px] text-on-surface-variant">Variable • Mensuel</span>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<span class="text-[10px] font-label px-2 py-0.5 rounded bg-primary/10 text-primary font-semibold">Reconduire 1er</span>
+<span class="text-[10px] font-label px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-medium">Auto-débit</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest rounded-xl p-3 shadow-sm border border-surface-container-high flex items-center justify-between gap-3">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-lg bg-purple-500/10 text-purple-600 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-base">theater_comedy</span>
+</div>
+<div>
+<h4 class="font-headline font-bold text-on-surface text-xs">Loisirs <span class="font-normal text-on-surface-variant">(200,00 €)</span></h4>
+<span class="text-[10px] text-on-surface-variant">Variable • Mensuel</span>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<span class="text-[10px] font-label px-2 py-0.5 rounded bg-primary/10 text-primary font-semibold">Reconduire 1er</span>
+<span class="text-[10px] font-label px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-medium">Auto-débit</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest rounded-xl p-3 shadow-sm border border-surface-container-high flex items-center justify-between gap-3">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-lg bg-amber-500/10 text-amber-600 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-base">subscriptions</span>
+</div>
+<div>
+<h4 class="font-headline font-bold text-on-surface text-xs">Abonnements &amp; Services <span class="font-normal text-on-surface-variant">(45,00 €)</span></h4>
+<span class="text-[10px] text-on-surface-variant">Charge Fixe • Mensuel</span>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<span class="text-[10px] font-label px-2 py-0.5 rounded bg-primary/10 text-primary font-semibold">Reconduire 1er</span>
+<span class="text-[10px] font-label px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-medium">Auto-débit</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest rounded-xl p-3 shadow-sm border border-surface-container-high flex items-center justify-between gap-3">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-lg bg-rose-500/15 text-rose-600 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-base">health_and_safety</span>
+</div>
+<div>
+<h4 class="font-headline font-bold text-on-surface text-xs">Santé &amp; Mutuelle <span class="font-normal text-on-surface-variant">(85,00 €)</span></h4>
+<span class="text-[10px] text-on-surface-variant">Charge Fixe • Mensuel</span>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<span class="text-[10px] font-label px-2 py-0.5 rounded bg-primary/10 text-primary font-semibold">Reconduire 1er</span>
+<span class="text-[10px] font-label px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-medium">Auto-débit</span>
+</div>
+</div>
+</div>
+<div class="fixed bottom-20 right-4 z-40">
+<button class="bg-primary text-on-primary px-4 py-2.5 rounded-full shadow-lg flex items-center gap-2 font-headline text-xs font-bold hover:opacity-90 transition-all">
+<span class="material-symbols-outlined text-base">add</span>
+<span>+ Nouveau modèle</span>
+</button>
+</div></main>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 shadow-lg dark:shadow-none bg-surface-container-lowest dark:bg-inverse-surface flex justify-around items-center px-2 py-2">
+<!-- Budget -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant p-1.5 hover:bg-surface-container dark:hover:bg-surface-container-high rounded-xl transition-all duration-200" href="#">
+<span class="material-symbols-outlined text-xl">account_balance_wallet</span>
+<span class="text-xs font-headline mt-1">Budget</span>
+</a>
+<!-- Réserve -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant p-1.5 hover:bg-surface-container dark:hover:bg-surface-container-high rounded-xl transition-all duration-200" href="#">
+<span class="material-symbols-outlined text-xl">inventory_2</span>
+<span class="text-xs font-headline mt-1">Réserve</span>
+</a>
+<!-- + Dépense (Active) -->
+<a class="flex flex-col items-center justify-center bg-secondary-container dark:bg-secondary text-on-secondary-container dark:text-on-secondary rounded-xl p-1.5 hover:bg-surface-container dark:hover:bg-surface-container-high transition-all duration-200 scale-0.98" href="#">
+<span class="material-symbols-outlined text-xl">add_circle</span>
+<span class="text-xs font-headline mt-1 font-bold">+ Dépense</span>
+</a>
+<!-- Comparateur -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant p-1.5 hover:bg-surface-container dark:hover:bg-surface-container-high rounded-xl transition-all duration-200" href="#">
+<span class="material-symbols-outlined text-xl">storefront</span>
+<span class="text-xs font-headline mt-1">Comparateur</span>
+</a>
+<!-- Coach IA -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant p-1.5 hover:bg-surface-container dark:hover:bg-surface-container-high rounded-xl transition-all duration-200" href="#">
+<span class="material-symbols-outlined text-xl">smart_toy</span>
+<span class="text-xs font-headline mt-1">Coach IA</span>
+</a>
+</nav>
+</body></html>

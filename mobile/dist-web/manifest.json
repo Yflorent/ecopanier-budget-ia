@@ -1,0 +1,35 @@
+{
+  "name": "EcoPanier & Budget IA",
+  "short_name": "EcoPanier IA",
+  "description": "Gérez vos budgets mensuels, évitez les agios, cuisinez 4 gastronomies du monde à 0€ avec votre réserve et comparez les supermarchés à moins de 5 km.",
+  "start_url": "/index.html",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#064E3B",
+  "theme_color": "#047857",
+  "lang": "fr-FR",
+  "categories": ["finance", "food", "shopping", "lifestyle"],
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "related_applications": [
+    {
+      "platform": "play",
+      "url": "https://play.google.com/store/apps/details?id=com.ecopanier.budgetia",
+      "id": "com.ecopanier.budgetia"
+    }
+  ],
+  "prefer_related_applications": false
+}

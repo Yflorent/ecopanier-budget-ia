@@ -1,0 +1,25 @@
+{
+  "name": "ecopanier-budget-ia-monorepo",
+  "version": "3.1.0",
+  "private": true,
+  "description": "Application Mobile de Gestion Financière, Réserve Domestique & Comparateur Géolocalisé (5 km) — Architecture Serverless Firebase & Vertex AI Gemini",
+  "workspaces": [
+    "packages/shared",
+    "backend/functions",
+    "mobile"
+  ],
+  "scripts": {
+    "build:shared": "npm --workspace=@depense/shared run build",
+    "build:functions": "npm --workspace=@depense/functions run build",
+    "typecheck:mobile": "npm --workspace=@depense/mobile run typecheck",
+    "build": "npm run build:shared && npm run build:functions && npm run typecheck:mobile",
+    "test": "npm --workspace=@depense/shared test && npm --workspace=@depense/functions test && npm --workspace=@depense/mobile test"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "typescript": "^5.7.2"
+  }
+}

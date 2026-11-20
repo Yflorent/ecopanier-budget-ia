@@ -1,0 +1,13 @@
+{
+  "name": "@depense/mobile",
+  "version": "3.1.0",
+  "description": "Socle Mobile React Native (Expo + TypeScript) — Gestion d'état centrée sur selectedYearMonth, Repositories Offline-First, Share Intent PDF & i18n",
+  "main": "src/index.ts",
+  "scripts": {
+    "typecheck": "tsc -p tsconfig.json",
+    "test": "node --test dist/tests/*.test.js"
+  },
+  "dependencies": {
+    "@depense/shared": "3.1.0"
+  }
+}

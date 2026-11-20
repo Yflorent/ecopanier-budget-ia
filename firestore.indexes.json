@@ -1,0 +1,72 @@
+{
+  "indexes": [
+    {
+      "collectionGroup": "pantryItems",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "needsRestock", "order": "ASCENDING" },
+        { "fieldPath": "currentQuantity", "order": "ASCENDING" }
+      ]
+    },
+    {
+      "collectionGroup": "pantryMovements",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "yearMonth", "order": "ASCENDING" },
+        { "fieldPath": "timestamp", "order": "DESCENDING" }
+      ]
+    },
+    {
+      "collectionGroup": "pantryMovements",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "itemId", "order": "ASCENDING" },
+        { "fieldPath": "type", "order": "ASCENDING" },
+        { "fieldPath": "timestamp", "order": "ASCENDING" }
+      ]
+    },
+    {
+      "collectionGroup": "transactions",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "yearMonth", "order": "ASCENDING" },
+        { "fieldPath": "date", "order": "DESCENDING" }
+      ]
+    },
+    {
+      "collectionGroup": "transactions",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "invoiceFingerprint", "order": "ASCENDING" },
+        { "fieldPath": "yearMonth", "order": "ASCENDING" }
+      ]
+    },
+    {
+      "collectionGroup": "stores",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "brand", "order": "ASCENDING" },
+        { "fieldPath": "geohash", "order": "ASCENDING" }
+      ]
+    },
+    {
+      "collectionGroup": "storePrices",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "eanBarcode", "order": "ASCENDING" },
+        { "fieldPath": "geohash", "order": "ASCENDING" },
+        { "fieldPath": "unitPrice", "order": "ASCENDING" }
+      ]
+    },
+    {
+      "collectionGroup": "storePrices",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "normalizedProductKey", "order": "ASCENDING" },
+        { "fieldPath": "geohash", "order": "ASCENDING" },
+        { "fieldPath": "unitPrice", "order": "ASCENDING" }
+      ]
+    }
+  ],
+  "fieldOverrides": []
+}

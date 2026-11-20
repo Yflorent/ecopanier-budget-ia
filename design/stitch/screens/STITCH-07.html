@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+
+<html class="h-full" lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>STITCH-07 — Comparateur Quotidien 5 km</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "tertiary-dim": "#005886",
+            "inverse-primary": "#a7fef3",
+            "on-tertiary-fixed-variant": "#003655",
+            "on-primary": "#e2fffa",
+            "outline-variant": "#acb3b7",
+            "on-tertiary-container": "#002d47",
+            "on-secondary-container": "#3f33d6",
+            "on-error-container": "#6e0a12",
+            "on-tertiary": "#f6f9ff",
+            "on-background": "#2c3437",
+            "on-secondary": "#fbf7ff",
+            "surface-tint": "#006b63",
+            "on-primary-container": "#005c56",
+            "on-tertiary-fixed": "#000d19",
+            "background": "#f7f9fb",
+            "secondary-container": "#e2dfff",
+            "error-dim": "#67040d",
+            "surface-container-lowest": "#ffffff",
+            "surface-container-highest": "#dce4e8",
+            "surface-bright": "#f7f9fb",
+            "inverse-surface": "#0b0f10",
+            "tertiary-fixed-dim": "#40a2e7",
+            "error-container": "#fa746f",
+            "on-primary-fixed-variant": "#006760",
+            "secondary-fixed": "#e2dfff",
+            "surface-container": "#eaeff2",
+            "surface-dim": "#d4dbdf",
+            "on-surface-variant": "#596064",
+            "secondary-dim": "#4135d8",
+            "secondary": "#4e45e4",
+            "outline": "#747c80",
+            "primary-fixed-dim": "#8ee4d9",
+            "on-secondary-fixed": "#2a13c5",
+            "error": "#a83836",
+            "tertiary": "#006499",
+            "on-secondary-fixed-variant": "#4a40e0",
+            "on-primary-fixed": "#004842",
+            "tertiary-container": "#51b0f6",
+            "surface-variant": "#dce4e8",
+            "on-surface": "#2c3437",
+            "on-error": "#fff7f6",
+            "surface": "#f7f9fb",
+            "primary": "#006b63",
+            "primary-dim": "#005e57",
+            "tertiary-fixed": "#51b0f6",
+            "primary-fixed": "#9cf2e8",
+            "inverse-on-surface": "#9a9d9f",
+            "primary-container": "#9cf2e8",
+            "surface-container-high": "#e3e9ed",
+            "surface-container-low": "#f0f4f7",
+            "secondary-fixed-dim": "#d2d0ff"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "fontFamily": {
+            "headline": ["Plus Jakarta Sans"],
+            "display": ["Plus Jakarta Sans"],
+            "body": ["Inter"],
+            "label": ["Space Grotesk"]
+          }
+        },
+      },
+    }
+  </script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@500;600;700;800&amp;family=Space+Grotesk:wght@500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-background text-on-background font-body h-full flex flex-col antialiased selection:bg-primary-container selection:text-on-primary-container">
+<!-- TopAppBar -->
+<header class="sticky top-0 z-40 bg-surface dark:bg-inverse-surface shadow-sm">
+<div class="flex justify-between items-center w-full px-4 py-3 max-w-7xl mx-auto">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container font-headline font-bold text-sm overflow-hidden" title="User Profile Avatar">
+<img class="w-full h-full object-cover" data-alt="A detailed portrait photograph of a young professional with friendly expression, soft lighting, neutral background, high detail editorial style, modern minimalist aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCNUmuGjgUvaiB4yVBjLGs-2vhs0w47SEU1YaBE_yaL6MO2CKdfU72QG6GdpopzotZE7g3R8aTV8vwFgq1_WR747rVDCkLdSUHRk6Eu0oPqqvFerWuEfHn1aBhBHsnopKZLhI9M1F_1JAjq_L5HFzo3eSw_hyvrQCedGuzFeq1SQlojpVa2ruxw69yl1CE8ZyLyWoEMiuRpKg7WxG8UQoXSAIeiw-WP5gyyoKZjnpOlnFXWZmhyps75vlhUYrx-8749Rbx05KZf7b4"/>
+</div>
+<h1 class="text-lg font-headline font-bold text-primary dark:text-inverse-primary tracking-tight">Novembre 2026</h1>
+</div>
+<button class="w-10 h-10 rounded-full flex items-center justify-center text-on-surface-variant hover:bg-surface-container transition-all duration-200">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+</div>
+</header>
+<!-- Main Scrollable Content -->
+<main class="flex-1 max-w-md w-full mx-auto px-4 py-4 pb-32 overflow-y-auto space-y-4"><div class="bg-surface-container p-1 rounded-xl flex gap-1 shadow-inner mb-4"><button class="flex-1 py-2 px-3 rounded-lg text-on-surface-variant hover:text-on-surface font-headline font-medium text-xs flex flex-col items-center transition-all"><span>Panier Unique E.Leclerc</span><span class="text-[10px] font-label text-primary font-bold">11,65 €</span></button><button class="flex-1 py-2 px-3 rounded-lg bg-surface-container-lowest text-primary font-headline font-bold text-xs shadow-sm flex flex-col items-center transition-all"><span>Multi-Enseignes Optimisé</span><span class="text-[10px] font-label text-on-surface-variant font-normal">11,20 € • -3,40 €</span></button></div><div class="bg-gradient-to-r from-secondary-container/40 to-primary-container/30 border border-primary/20 rounded-xl p-4 relative overflow-hidden mb-4"><div class="absolute top-2 right-2 flex items-center gap-1 bg-surface-container-lowest/80 backdrop-blur px-2 py-0.5 rounded-full text-[10px] font-label font-bold text-primary"><span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">smart_toy</span>IA Coach</div><div class="flex items-start gap-3"><div class="w-9 h-9 rounded-lg bg-primary text-on-primary flex items-center justify-center shrink-0 mt-0.5"><span class="material-symbols-outlined text-sm">bolt</span></div><div><h3 class="text-xs font-label font-bold text-on-surface">2 substitutions MDD disponibles</h3><p class="text-xs text-on-surface-variant mt-0.5">Économisez <span class="text-primary font-bold">-1,40 €</span> sur votre total en appliquant les suggestions.</p></div></div></div><div class="space-y-2"><h3 class="text-xs font-label uppercase tracking-wider text-on-surface-variant px-1">Articles à réapprovisionner (5)</h3><div class="bg-surface-container-lowest border border-surface-container-high rounded-xl p-3 flex items-center justify-between shadow-sm"><div class="flex items-center gap-3"><input checked="" class="rounded text-primary focus:ring-primary w-4 h-4" type="checkbox"/><div class="flex flex-col"><span class="text-xs font-headline font-bold text-on-surface">Lait Demi-Écrémé 1L</span><span class="text-[10px] text-on-surface-variant">E.Leclerc • Stock : 0</span></div></div><div class="text-right"><span class="block text-xs font-headline font-bold text-primary">0,95 €</span><span class="text-[10px] font-label text-primary bg-primary-container/40 px-1.5 py-0.5 rounded font-bold">-0,35 €</span></div></div><div class="bg-surface-container-lowest border border-surface-container-high rounded-xl p-3 flex items-center justify-between shadow-sm"><div class="flex items-center gap-3"><input checked="" class="rounded text-primary focus:ring-primary w-4 h-4" type="checkbox"/><div class="flex flex-col"><span class="text-xs font-headline font-bold text-on-surface">Huile de Tournesol 1L</span><span class="text-[10px] text-on-surface-variant">Lidl • Stock : 1</span></div></div><div class="text-right"><span class="block text-xs font-headline font-bold text-primary">1,85 €</span><span class="text-[10px] font-label text-primary bg-primary-container/40 px-1.5 py-0.5 rounded font-bold">-0,85 €</span></div></div><div class="bg-surface-container-lowest border border-surface-container-high rounded-xl p-3 flex items-center justify-between shadow-sm"><div class="flex items-center gap-3"><input checked="" class="rounded text-primary focus:ring-primary w-4 h-4" type="checkbox"/><div class="flex flex-col"><span class="text-xs font-headline font-bold text-on-surface">Pâtes Penne 500g</span><span class="text-[10px] text-on-surface-variant">Inter • Stock : 0</span></div></div><div class="text-right"><span class="block text-xs font-headline font-bold text-primary">0,75 €</span><span class="text-[10px] font-label text-primary bg-primary-container/40 px-1.5 py-0.5 rounded font-bold">-0,20 €</span></div></div><div class="bg-surface-container-lowest border border-surface-container-high rounded-xl p-3 flex items-center justify-between shadow-sm"><div class="flex items-center gap-3"><input checked="" class="rounded text-primary focus:ring-primary w-4 h-4" type="checkbox"/><div class="flex flex-col"><span class="text-xs font-headline font-bold text-on-surface">Beurre Doux 250g</span><span class="text-[10px] text-on-surface-variant">Carrefour • Stock : 0</span></div></div><div class="text-right"><span class="block text-xs font-headline font-bold text-primary">2,10 €</span><span class="text-[10px] font-label text-primary bg-primary-container/40 px-1.5 py-0.5 rounded font-bold">-0,40 €</span></div></div><div class="bg-surface-container-lowest border border-surface-container-high rounded-xl p-3 flex items-center justify-between shadow-sm"><div class="flex items-center gap-3"><input checked="" class="rounded text-primary focus:ring-primary w-4 h-4" type="checkbox"/><div class="flex flex-col"><span class="text-xs font-headline font-bold text-on-surface">Lessive Liquide 2L</span><span class="text-[10px] text-on-surface-variant">Lidl • Stock : 1</span></div></div><div class="text-right"><span class="block text-xs font-headline font-bold text-primary">7,65 €</span><span class="text-[10px] font-label text-primary bg-primary-container/40 px-1.5 py-0.5 rounded font-bold">-1,60 €</span></div></div></div></main>
+<!-- Sticky Action Footer Button -->
+<div class="fixed bottom-16 left-0 right-0 p-4 bg-gradient-to-t from-background via-background/90 to-transparent z-40 max-w-md mx-auto"><div class="flex flex-col gap-2 bg-surface-container-lowest border border-surface-container-high p-3 rounded-2xl shadow-lg"><div class="flex justify-between items-center text-xs font-headline"><span class="text-on-surface-variant font-medium">Total Panier (4 articles)</span><span class="font-bold text-primary">11,65 € <span class="text-[10px] text-primary font-normal">(Éco. 3,40 €)</span></span></div><button class="w-full bg-primary hover:bg-primary-dim text-on-primary py-3 px-4 rounded-xl font-headline font-bold text-sm shadow transition-all active:scale-[0.98] flex items-center justify-center gap-2"><span class="material-symbols-outlined text-lg">check_circle</span>Valider &amp; Imputer sur Novembre 2026</button></div></div>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-2 py-2 bg-surface-container-lowest dark:bg-inverse-surface shadow-lg dark:shadow-none">
+<!-- Nav Item 1 -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant p-1.5 hover:bg-surface-container dark:hover:bg-surface-container-high rounded-xl transition-all duration-200" href="#">
+<span class="material-symbols-outlined text-xl">account_balance_wallet</span>
+<span class="text-xs font-label mt-1">Budget</span>
+</a>
+<!-- Nav Item 2 -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant p-1.5 hover:bg-surface-container dark:hover:bg-surface-container-high rounded-xl transition-all duration-200" href="#">
+<span class="material-symbols-outlined text-xl">inventory_2</span>
+<span class="text-xs font-label mt-1">Réserve</span>
+</a>
+<!-- Nav Item 3 -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant p-1.5 hover:bg-surface-container dark:hover:bg-surface-container-high rounded-xl transition-all duration-200" href="#">
+<span class="material-symbols-outlined text-xl">add_circle</span>
+<span class="text-xs font-label mt-1">+ Dépense</span>
+</a>
+<!-- Nav Item 4 (Active: Comparateur) -->
+<a class="flex flex-col items-center justify-center bg-secondary-container dark:bg-secondary text-on-secondary-container dark:text-on-secondary rounded-xl p-1.5 transition-all duration-200" href="#">
+<span class="material-symbols-outlined text-xl" style="font-variation-settings: 'FILL' 1;">storefront</span>
+<span class="text-xs font-headline font-bold mt-1">Comparateur</span>
+</a>
+<!-- Nav Item 5 -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant p-1.5 hover:bg-surface-container dark:hover:bg-surface-container-high rounded-xl transition-all duration-200" href="#">
+<span class="material-symbols-outlined text-xl">smart_toy</span>
+<span class="text-xs font-label mt-1">Coach IA</span>
+</a>
+</nav>
+</body></html>

@@ -1,0 +1,14 @@
+{
+  "name": "@depense/shared",
+  "version": "3.1.0",
+  "description": "Modèles de données Firestore, schémas IA Gemini et logique métier partagée (Budget YYYY-MM, Réserve, Comparateur 5 km)",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "node --test dist/tests/*.test.js"
+  },
+  "files": [
+    "dist"
+  ]
+}

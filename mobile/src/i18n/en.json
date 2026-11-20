@@ -1,0 +1,42 @@
+{
+  "app": {
+    "title": "EcoPanier & Budget AI",
+    "subtitle": "Connect your household pantry directly to your monthly budget"
+  },
+  "navigation": {
+    "previousMonth": "Previous month",
+    "nextMonth": "Next month",
+    "statusOpen": "Active month",
+    "statusClosed": "Closed"
+  },
+  "budget": {
+    "realDisposableIncome": "Real Disposable Income",
+    "globalAllocated": "Global Monthly Budget",
+    "fixedChargesAutoDebited": "Fixed Charges Auto-Debited on the 1st",
+    "variableSpent": "Monthly Variable Spending",
+    "recurringTemplatesTitle": "Recurring Category Templates (Zero Re-entry)",
+    "scopeMonthOnly": "Apply to displayed month only",
+    "scopeMonthAndFuture": "Apply to this month and future templates"
+  },
+  "pantry": {
+    "title": "Household Pantry",
+    "oneTapUse": "-1 Use",
+    "lowStockBadge": "Critical Stock (<= 1)",
+    "lowStockNotification": "Warning, you only have {{qty}} {{product}} left in your pantry."
+  },
+  "comparator": {
+    "title": "Daily Local Comparator (5 km Radius)",
+    "bestPerItemTab": "Best Price Per Item",
+    "bestSingleStoreTab": "Best Single Store Basket",
+    "validatePurchaseButton": "Confirm Purchase & Charge {{month}}"
+  },
+  "invoice": {
+    "importPdfButton": "Import PDF Invoice (Drive / e-Receipt)",
+    "duplicateBlocked": "This PDF invoice has already been imported for this month.",
+    "prevalidationTitle": "Pre-validate Extracted Items & Budget Split"
+  },
+  "coachAi": {
+    "title": "AI Financial Coach & Optimizations",
+    "applyOneClick": "Apply Recommendation in 1 Tap"
+  }
+}

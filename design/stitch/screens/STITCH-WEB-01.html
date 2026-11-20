@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="fr" class="h-full">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>STITCH-WEB-01 — Portail Web SaaS & Connexion Desktop</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            teal: {
+              700: '#0F766E',
+              800: '#115E59',
+              900: '#134E4A',
+              50: '#F0FDFA',
+              100: '#CCFBF1',
+              500: '#14B8A6'
+            },
+            indigo: {
+              600: '#4F46E5',
+              700: '#4338CA',
+              50: '#EEF2FF',
+              100: '#E0E7FF'
+            },
+            emerald: {
+              500: '#10B981',
+              600: '#059669',
+              50: '#ECFDF5'
+            }
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'Inter', 'sans-serif'],
+            body: ['Inter', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      vertical-align: middle;
+    }
+    .material-symbols-outlined.fill {
+      font-variation-settings: 'FILL' 1;
+    }
+    body {
+      font-family: 'Plus Jakarta Sans', Inter, sans-serif;
+    }
+  </style>
+</head>
+<body class="min-h-screen bg-[#F8FAFC] text-slate-800 flex flex-col justify-between selection:bg-teal-100 selection:text-teal-900 relative overflow-x-hidden">
+
+  <!-- Subtile gradient background orbs -->
+  <div class="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none -z-10">
+    <div class="absolute -top-32 -left-32 w-96 h-96 bg-teal-200/30 rounded-full blur-3xl"></div>
+    <div class="absolute top-1/3 left-1/4 w-[500px] h-[500px] bg-indigo-100/40 rounded-full blur-3xl"></div>
+    <div class="absolute -bottom-24 right-10 w-96 h-96 bg-teal-100/40 rounded-full blur-3xl"></div>
+  </div>
+
+  <!-- Header / Navigation Bar Minimaliste Desktop -->
+  <header class="w-full max-w-7xl mx-auto px-8 py-5 flex items-center justify-between">
+    <!-- Brand Logo -->
+    <div class="flex items-center space-x-3">
+      <div class="w-11 h-11 rounded-xl bg-gradient-to-tr from-teal-700 to-teal-500 flex items-center justify-center text-white shadow-md shadow-teal-700/20 relative">
+        <span class="material-symbols-outlined fill text-2xl text-white">shopping_basket</span>
+        <span class="absolute -bottom-1 -right-1 bg-indigo-600 text-white text-[10px] font-bold px-1.5 py-0.2 rounded-full border-2 border-white shadow-xs">5km</span>
+      </div>
+      <div>
+        <div class="flex items-center space-x-2">
+          <span class="font-extrabold text-xl tracking-tight text-slate-900">EcoPanier</span>
+          <span class="text-xs px-2 py-0.5 rounded-md bg-indigo-50 text-indigo-600 border border-indigo-100 font-semibold tracking-wide uppercase">Budget IA</span>
+        </div>
+        <p class="text-xs text-slate-500">Sovereign Ledger • Reste à vivre & Réserve</p>
+      </div>
+    </div>
+
+    <!-- Navigation Liens & Statut -->
+    <div class="hidden md:flex items-center space-x-6 text-sm font-medium text-slate-600">
+      <a href="#piliers" class="hover:text-teal-700 transition-colors flex items-center space-x-1.5">
+        <span class="material-symbols-outlined text-lg text-slate-400">tune</span>
+        <span>Fonctionnalités</span>
+      </a>
+      <a href="#comparateur" class="hover:text-teal-700 transition-colors flex items-center space-x-1.5">
+        <span class="material-symbols-outlined text-lg text-slate-400">storefront</span>
+        <span>Comparateur 5 km</span>
+      </a>
+      <a href="#mobile" class="hover:text-teal-700 transition-colors flex items-center space-x-1.5">
+        <span class="material-symbols-outlined text-lg text-slate-400">smartphone</span>
+        <span>App Mobile v4.1</span>
+      </a>
+      <div class="h-4 w-px bg-slate-200"></div>
+      <div class="flex items-center space-x-2 bg-emerald-50 text-emerald-700 border border-emerald-200/60 px-3 py-1.5 rounded-full text-xs font-semibold">
+        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+        <span>Novembre 2026 opérationnel</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content Split Screen (1440x900 viewport target) -->
+  <main class="flex-1 w-full max-w-7xl mx-auto px-8 py-4 lg:py-6 flex items-center">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center w-full">
+      
+      <!-- Colonne Gauche (58% -> col-span-7) : Vitrine SaaS & Valeur Métier -->
+      <section class="lg:col-span-7 space-y-6">
+        
+        <!-- Badge Version & Écosystème -->
+        <div class="inline-flex items-center space-x-2.5 px-3.5 py-1.5 rounded-full bg-white border border-slate-200/80 shadow-xs">
+          <span class="flex h-2 w-2 relative">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-teal-400 opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-2 w-2 bg-teal-600"></span>
+          </span>
+          <span class="text-xs font-bold text-teal-800 tracking-wide">Plateforme Web & App Mobile v4.1</span>
+          <span class="text-slate-300">•</span>
+          <span class="text-xs font-medium text-slate-500">Chiffrement Souverain Local</span>
+        </div>
+
+        <!-- Grand Titre & Accroche -->
+        <div class="space-y-3">
+          <h1 class="text-3xl lg:text-[40px] leading-tight font-extrabold text-slate-900 tracking-tight">
+            Prenez le contrôle de votre <span class="text-teal-700">reste à vivre</span> et de vos courses à <span class="underline decoration-indigo-300 decoration-wavy decoration-2">5 km</span>.
+          </h1>
+          <p class="text-base text-slate-600 leading-relaxed max-w-2xl font-body">
+            Fini le tableur rigide. Reliez directement votre budget mensuel par enveloppes, la réserve réelle de vos placards et les prix des supermarchés locaux dans un rayon de 5 km.
+          </p>
+        </div>
+
+        <!-- Aperçu Métrique Flash Clé -->
+        <div class="flex items-center space-x-4 bg-gradient-to-r from-teal-50/90 via-indigo-50/50 to-white p-4 rounded-2xl border border-teal-100/80 shadow-xs">
+          <div class="w-12 h-12 rounded-xl bg-teal-700 flex items-center justify-center text-white shrink-0 shadow-sm shadow-teal-700/20">
+            <span class="material-symbols-outlined text-2xl">trending_up</span>
+          </div>
+          <div class="flex-1">
+            <div class="flex items-baseline space-x-2">
+              <span class="text-xl font-bold text-teal-900">+120,00 € / mois</span>
+              <span class="text-xs font-semibold text-emerald-600 bg-emerald-100/70 px-2 py-0.5 rounded-full">Économies mesurées</span>
+            </div>
+            <p class="text-xs text-slate-600 mt-0.5">Grâce à l'anti-gaspillage de la réserve (+46,50 €) et au panier 5 km optimisé (-14% sur le ticket).</p>
+          </div>
+        </div>
+
+        <!-- Grille 2x2 des 4 Piliers Fondateurs -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5 pt-1" id="piliers">
+          
+          <!-- Pilier 1 : Budget Zéro-Agios -->
+          <div class="p-3.5 rounded-2xl bg-white border border-slate-200/80 shadow-xs hover:border-teal-300 hover:shadow-sm transition-all group">
+            <div class="flex items-center space-x-2.5 mb-1.5">
+              <div class="w-8 h-8 rounded-lg bg-teal-50 text-teal-700 flex items-center justify-center group-hover:bg-teal-700 group-hover:text-white transition-colors">
+                <span class="material-symbols-outlined text-lg">account_balance_wallet</span>
+              </div>
+              <h3 class="font-bold text-sm text-slate-900">1. Budget Zéro-Agios</h3>
+            </div>
+            <p class="text-xs text-slate-600 font-body leading-relaxed">
+              Enveloppes dynamiques, charges reconduites le 1er du mois et calcul en continu du vrai <strong class="text-slate-800">Reste à vivre</strong>.
+            </p>
+          </div>
+
+          <!-- Pilier 2 : Réserve Anti-Gaspi & DLC -->
+          <div class="p-3.5 rounded-2xl bg-white border border-slate-200/80 shadow-xs hover:border-teal-300 hover:shadow-sm transition-all group">
+            <div class="flex items-center space-x-2.5 mb-1.5">
+              <div class="w-8 h-8 rounded-lg bg-indigo-50 text-indigo-600 flex items-center justify-center group-hover:bg-indigo-600 group-hover:text-white transition-colors">
+                <span class="material-symbols-outlined text-lg">inventory_2</span>
+              </div>
+              <h3 class="font-bold text-sm text-slate-900">2. Réserve & DLC</h3>
+            </div>
+            <p class="text-xs text-slate-600 font-body leading-relaxed">
+              Gestion de 30+ denrées ménagères en 1-tap (<strong class="text-slate-800">-1/+1 stock</strong>), alertes péremption et zéro saturation visuelle.
+            </p>
+          </div>
+
+          <!-- Pilier 3 : Comparateur Local 5 km -->
+          <div class="p-3.5 rounded-2xl bg-white border border-slate-200/80 shadow-xs hover:border-teal-300 hover:shadow-sm transition-all group" id="comparateur">
+            <div class="flex items-center space-x-2.5 mb-1.5">
+              <div class="w-8 h-8 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center group-hover:bg-emerald-600 group-hover:text-white transition-colors">
+                <span class="material-symbols-outlined text-lg">storefront</span>
+              </div>
+              <h3 class="font-bold text-sm text-slate-900">3. Comparateur 5 km</h3>
+            </div>
+            <p class="text-xs text-slate-600 font-body leading-relaxed">
+              Comparatif E.Leclerc, Lidl, Carrefour, Intermarché. Détection immédiate du <strong class="text-slate-800">panier unique vs multi-enseignes</strong>.
+            </p>
+          </div>
+
+          <!-- Pilier 4 : Chef Réserve IA Zéro-Dépense -->
+          <div class="p-3.5 rounded-2xl bg-white border border-slate-200/80 shadow-xs hover:border-teal-300 hover:shadow-sm transition-all group">
+            <div class="flex items-center space-x-2.5 mb-1.5">
+              <div class="w-8 h-8 rounded-lg bg-amber-50 text-amber-600 flex items-center justify-center group-hover:bg-amber-600 group-hover:text-white transition-colors">
+                <span class="material-symbols-outlined text-lg">restaurant</span>
+              </div>
+              <h3 class="font-bold text-sm text-slate-900">4. Chef Réserve IA (4 Cuisines)</h3>
+            </div>
+            <p class="text-xs text-slate-600 font-body leading-relaxed">
+              Recettes 0,00 € à dépenser adaptées aux stocks : Française, Camerounaise (Poulet DG), Maghrébine, Asiatique.
+            </p>
+          </div>
+
+        </div>
+
+        <!-- Bandeau Téléchargement Mobile v4.1 -->
+        <div class="p-3.5 rounded-2xl bg-slate-900 text-white flex flex-col sm:flex-row items-center justify-between gap-3 shadow-md" id="mobile">
+          <div class="flex items-center space-x-3">
+            <div class="w-10 h-10 rounded-xl bg-teal-500/20 text-teal-400 border border-teal-500/30 flex items-center justify-center shrink-0">
+              <span class="material-symbols-outlined text-xl">install_mobile</span>
+            </div>
+            <div>
+              <div class="flex items-center space-x-2">
+                <span class="font-bold text-sm">Application Mobile EcoPanier</span>
+                <span class="bg-teal-500/20 text-teal-300 text-[10px] px-2 py-0.5 rounded-full font-semibold border border-teal-500/30">v4.1 Stable</span>
+              </div>
+              <p class="text-xs text-slate-400">PWA iOS installable • Play Store • Synchronisation hors-ligne</p>
+            </div>
+          </div>
+          <button class="w-full sm:w-auto px-4 py-2 bg-teal-500 hover:bg-teal-400 text-slate-950 font-bold text-xs rounded-xl transition-all shadow-sm flex items-center justify-center space-x-2 shrink-0">
+            <span class="material-symbols-outlined text-base">android</span>
+            <span>Télécharger APK Android</span>
+          </button>
+        </div>
+
+      </section>
+
+      <!-- Colonne Droite (42% -> col-span-5) : Carte Authentification Épurée Surélevée -->
+      <section class="lg:col-span-5">
+        <div class="bg-white rounded-3xl p-7 lg:p-8 shadow-xl shadow-slate-200/70 border border-slate-200/90 relative">
+          
+          <!-- En-tête de la carte -->
+          <div class="text-center mb-6">
+            <div class="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-teal-50 text-teal-700 mb-3 border border-teal-100 shadow-xs">
+              <span class="material-symbols-outlined fill text-2xl">lock</span>
+            </div>
+            <h2 class="text-2xl font-bold text-slate-900 tracking-tight">Espace Sécurisé</h2>
+            <p class="text-xs text-slate-500 mt-1">Accédez à votre budget mensuel et synchronisez vos enseignes</p>
+          </div>
+
+          <!-- Sélecteur Segmenté Connexion | Inscription -->
+          <div class="bg-slate-100 p-1 rounded-xl flex items-center text-xs font-semibold mb-5">
+            <button class="flex-1 py-2 rounded-lg bg-white text-slate-900 shadow-xs text-center transition-all">
+              Connexion
+            </button>
+            <button class="flex-1 py-2 rounded-lg text-slate-500 hover:text-slate-800 text-center transition-all">
+              Inscription
+            </button>
+          </div>
+
+          <!-- Formulaire Connexion -->
+          <form class="space-y-4" onsubmit="return false;">
+            
+            <!-- Champ Email -->
+            <div>
+              <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5" for="email">
+                Identifiant ou Email
+              </label>
+              <div class="relative">
+                <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
+                  <span class="material-symbols-outlined text-lg">mail</span>
+                </div>
+                <input 
+                  type="email" 
+                  id="email" 
+                  value="alexandre.martin@email.fr"
+                  class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-300 text-sm font-medium text-slate-900 bg-slate-50/50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-teal-700/20 focus:border-teal-700 transition-all"
+                  placeholder="nom@exemple.fr"
+                >
+              </div>
+            </div>
+
+            <!-- Champ Mot de passe -->
+            <div>
+              <div class="flex items-center justify-between mb-1.5">
+                <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider" for="password">
+                  Mot de passe
+                </label>
+                <a href="#" class="text-xs font-semibold text-teal-700 hover:text-teal-800 transition-colors">
+                  Oublié ?
+                </a>
+              </div>
+              <div class="relative">
+                <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
+                  <span class="material-symbols-outlined text-lg">key</span>
+                </div>
+                <input 
+                  type="password" 
+                  id="password" 
+                  value="••••••••••••••••"
+                  class="w-full pl-10 pr-10 py-2.5 rounded-xl border border-slate-300 text-sm font-medium text-slate-900 bg-slate-50/50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-teal-700/20 focus:border-teal-700 transition-all tracking-widest"
+                  placeholder="••••••••••••"
+                >
+                <button type="button" class="absolute inset-y-0 right-0 pr-3.5 flex items-center text-slate-400 hover:text-slate-600">
+                  <span class="material-symbols-outlined text-lg">visibility</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Bouton Principal Teal -->
+            <button 
+              type="submit" 
+              class="w-full py-3 px-4 bg-teal-700 hover:bg-teal-800 active:scale-[0.99] text-white font-bold text-sm rounded-xl shadow-md shadow-teal-700/20 transition-all flex items-center justify-center space-x-2"
+            >
+              <span>Se connecter</span>
+              <span class="material-symbols-outlined text-base">arrow_forward</span>
+            </button>
+
+          </form>
+
+          <!-- Séparateur OU -->
+          <div class="relative my-4">
+            <div class="absolute inset-0 flex items-center">
+              <div class="w-full border-t border-slate-200"></div>
+            </div>
+            <div class="relative flex justify-center text-xs uppercase">
+              <span class="bg-white px-2.5 text-slate-400 font-semibold tracking-wider">ou continuer avec</span>
+            </div>
+          </div>
+
+          <!-- Boutons OAuth Google & Apple -->
+          <div class="grid grid-cols-2 gap-2.5 mb-4">
+            <button class="flex items-center justify-center space-x-2 py-2 px-3 border border-slate-200 rounded-xl text-xs font-semibold text-slate-700 hover:bg-slate-50 hover:border-slate-300 transition-all shadow-2xs">
+              <svg class="w-4 h-4" viewBox="0 0 24 24">
+                <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/>
+                <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
+              </svg>
+              <span>Google</span>
+            </button>
+            <button class="flex items-center justify-center space-x-2 py-2 px-3 border border-slate-200 rounded-xl text-xs font-semibold text-slate-700 hover:bg-slate-50 hover:border-slate-300 transition-all shadow-2xs">
+              <svg class="w-4 h-4 fill-slate-900" viewBox="0 0 24 24">
+                <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.38c.62-.75 1.04-1.8 0.93-2.85-.9.04-2 .6-2.65 1.35-.58.67-1.09 1.74-.95 2.77.99.08 2.03-.52 2.67-1.27z"/>
+              </svg>
+              <span>Apple ID</span>
+            </button>
+          </div>
+
+          <!-- Raccourcis d'Accès Rapide : Mode Démo 1-clic & Accès Invité PIN -->
+          <div class="space-y-2 pt-2 border-t border-slate-100">
+            
+            <!-- Démo 1-clic -->
+            <button class="w-full p-2.5 rounded-xl bg-teal-50/70 hover:bg-teal-100/70 border border-teal-200/70 flex items-center justify-between text-left transition-colors group">
+              <div class="flex items-center space-x-2.5">
+                <span class="material-symbols-outlined text-teal-700 text-base">play_circle</span>
+                <div>
+                  <div class="text-xs font-bold text-teal-900 group-hover:text-teal-950 flex items-center space-x-1.5">
+                    <span>Mode Démo 1-Clic</span>
+                    <span class="text-[10px] bg-teal-200/70 text-teal-800 px-1.5 py-0.2 rounded font-semibold">Instantané</span>
+                  </div>
+                  <p class="text-[11px] text-teal-700/80">32 produits en stock • 5 mois d'historique 2026</p>
+                </div>
+              </div>
+              <span class="material-symbols-outlined text-teal-700 text-sm group-hover:translate-x-0.5 transition-transform">chevron_right</span>
+            </button>
+
+            <!-- Accès Invité PIN -->
+            <button class="w-full p-2.5 rounded-xl bg-slate-50 hover:bg-slate-100 border border-slate-200/80 flex items-center justify-between text-left transition-colors group">
+              <div class="flex items-center space-x-2.5">
+                <span class="material-symbols-outlined text-slate-600 text-base">pin</span>
+                <div>
+                  <div class="text-xs font-bold text-slate-800 flex items-center space-x-1.5">
+                    <span>Accès Invité (Code PIN 6 chiffres)</span>
+                  </div>
+                  <p class="text-[11px] text-slate-500">Consultation locale sans compte bancaire relié</p>
+                </div>
+              </div>
+              <span class="material-symbols-outlined text-slate-400 group-hover:text-slate-600 text-sm group-hover:translate-x-0.5 transition-transform">chevron_right</span>
+            </button>
+
+          </div>
+
+          <!-- Pied de carte Confidentialité RGPD -->
+          <div class="mt-5 pt-3 border-t border-slate-100 text-center">
+            <div class="flex items-center justify-center space-x-1.5 text-[11px] text-slate-400 font-medium">
+              <span class="material-symbols-outlined text-sm text-emerald-600">verified_user</span>
+              <span>Données chiffrées de bout en bout • Conforme RGPD & DSP2</span>
+            </div>
+            <div class="mt-1 flex items-center justify-center space-x-3 text-[11px] text-slate-400">
+              <a href="#" class="hover:text-teal-700 hover:underline">Confidentialité</a>
+              <span>•</span>
+              <a href="#" class="hover:text-teal-700 hover:underline">Mentions légales</a>
+              <span>•</span>
+              <a href="#" class="hover:text-teal-700 hover:underline">Support</a>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Footer Minimaliste Desktop -->
+  <footer class="w-full max-w-7xl mx-auto px-8 py-4 border-t border-slate-200/60 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500">
+    <div class="flex items-center space-x-3 mb-2 sm:mb-0">
+      <span class="font-bold text-slate-700">EcoPanier & Budget IA © 2026</span>
+      <span>—</span>
+      <span>Architecture Souveraine Décentralisée</span>
+    </div>
+    <div class="flex items-center space-x-4">
+      <span class="flex items-center space-x-1 text-slate-600">
+        <span class="w-2 h-2 rounded-full bg-teal-500"></span>
+        <span>Supermarchés actifs : E.Leclerc, Lidl, Carrefour, Intermarché (5 km)</span>
+      </span>
+    </div>
+  </footer>
+
+</body>
+</html>

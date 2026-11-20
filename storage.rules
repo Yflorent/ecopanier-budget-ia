@@ -1,0 +1,28 @@
+rules_version = '2';
+
+service firebase.storage {
+  match /b/{bucket}/o {
+    function isOwner(userId) {
+      return request.auth != null && request.auth.uid == userId;
+    }
+
+    // Avatars utilisateurs (US 0.3) - Max 5 MB, image/*
+    match /users/{userId}/avatar/{fileName} {
+      allow read: if isOwner(userId);
+      allow write: if isOwner(userId)
+        && request.resource.size < 5 * 1024 * 1024
+        && request.resource.contentType.matches('image/.*');
+    }
+
+    // Factures PDF et Photos de Tickets de caisse rattachés à un mois YYYY-MM (US 4.2, US 4.3) - Max 20 MB
+    match /users/{userId}/invoices/{yearMonth}/{fileName} {
+      allow read: if isOwner(userId);
+      allow write: if isOwner(userId)
+        && request.resource.size < 20 * 1024 * 1024
+        && (
+          request.resource.contentType == 'application/pdf' ||
+          request.resource.contentType.matches('image/.*')
+        );
+    }
+  }
+}

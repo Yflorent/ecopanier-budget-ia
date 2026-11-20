@@ -1,0 +1,14 @@
+[
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.ecopanier.budgetia",
+      "sha256_cert_fingerprints": [
+        "59:92:64:61:8A:6E:12:EE:86:19:F5:96:C9:BD:80:6F:3D:C2:4A:E7:0D:36:D4:74:60:ED:64:1B:7B:01:1A:9E"
+      ]
+    }
+  }
+]

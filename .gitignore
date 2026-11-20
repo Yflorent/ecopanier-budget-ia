@@ -1,0 +1,17 @@
+node_modules/
+dist/
+lib/
+.expo/
+.firebase/
+*.log
+.env
+.env.*
+!.env.example
+coverage/
+*.jks
+*.keystore
+mobile/android-app/build/
+*.mp4
+*.tgz
+*.idsig
+.agents/

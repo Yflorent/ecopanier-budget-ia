@@ -1,0 +1,544 @@
+rules_version = '2';
+
+// ===============================================================
+// Assumed Data Model & Schema Definitions
+// ===============================================================
+//
+// Collection: users/{userId}
+// Document ID: Firebase Auth UID
+// Fields:
+//   - uid: string (required/immutable) - Auth UID
+//   - email: string (optional, max 120 chars) - Courriel
+//   - displayName: string (optional, max 100 chars) - Nom affiché
+//   - photoUrl: string (optional, max 500 chars) - URL avatar
+//   - locale: string (required, 'fr' | 'en' | 'es') - Langue
+//   - currency: string (required, 'EUR' | 'XAF' | 'USD' | 'CAD') - Devise
+//   - defaultMonthlyIncome: number (required, >= 0) - Revenu mensuel par défaut
+//   - dailyNotificationTime: string (optional, max 10 chars, 'HH:mm')
+//   - fcmTokens: list of strings (optional, max 20 tokens)
+//   - location: map (optional, lat, lng, geohash, addressLabel, searchRadiusKm)
+//   - createdAt: string | timestamp (immutable)
+//   - updatedAt: string | timestamp
+//
+// Subcollection: users/{userId}/categoryTemplates/{templateId}
+// Document ID: Template ID (string, max 100 chars)
+// Fields:
+//   - id: string
+//   - name: string (max 100 chars)
+//   - icon: string (max 50 chars)
+//   - colorHex: string (max 20 chars)
+//   - defaultLimit: number (>= 0)
+//   - type: string ('VARIABLE' | 'CHARGE_FIXE')
+//   - isRecurring: bool
+//   - autoDebitOnFirstDay: bool (optional)
+//   - isArchived: bool (optional)
+//
+// Subcollection: users/{userId}/monthlyBudgets/{yearMonth}
+// Document ID: YearMonth (Format: YYYY-MM)
+// Fields:
+//   - yearMonth: string (Format: YYYY-MM, immutable)
+//   - status: string ('OPEN' | 'CLOSED')
+//   - globalAllocated: number (>= 0)
+//   - totalExtraIncome: number (optional, >= 0)
+//   - totalAgiosAndFees: number (optional, >= 0)
+//   - totalFixedCharges: number (>= 0)
+//   - totalVariableSpent: number (>= 0)
+//   - totalSavedViaComparator: number (>= 0)
+//   - realDisposableIncome: number
+//   - projectedEndOfMonthBalance: number (optional)
+//
+// Subcollection: users/{userId}/monthlyBudgets/{yearMonth}/categories/{categoryId}
+// Document ID: Category ID (string, max 100 chars)
+// Fields:
+//   - id: string
+//   - name: string (max 100 chars)
+//   - icon: string (max 50 chars)
+//   - colorHex: string (max 20 chars)
+//   - allocatedLimit: number (>= 0)
+//   - spentAmount: number (>= 0)
+//   - type: string ('VARIABLE' | 'CHARGE_FIXE', optional)
+//   - consumptionPercentage: number (optional, >= 0)
+//   - gaugeState: string ('HEALTHY' | 'WARNING' | 'CRITICAL', optional)
+//   - autoDebited: bool (optional)
+//   - isEnabledForMonth: bool (optional)
+//
+// Subcollection: users/{userId}/monthlyBudgets/{yearMonth}/transactions/{transactionId}
+// Subcollection: users/{userId}/monthlyBudgets/{yearMonth}/aiInsights/{insightId}
+//
+// Subcollection: users/{userId}/pantryItems/{itemId}
+// Document ID: Item ID (string, max 100 chars)
+// Fields:
+//   - id: string
+//   - name: string (max 200 chars)
+//   - normalizedProductKey: string (max 150 chars)
+//   - currentQuantity: number (>= 0)
+//   - alertThreshold: number (>= 0)
+//   - unit: string (max 40 chars)
+//   - category: string (max 60 chars)
+//   - needsRestock: bool
+//   - depletedAt: string | timestamp | null (optional)
+//
+// Subcollection: users/{userId}/pantryMovements/{movementId}
+// Document ID: Movement ID (string, max 128 chars)
+// Fields:
+//   - id: string
+//   - itemId: string (max 100 chars)
+//   - itemName: string (max 200 chars)
+//   - yearMonth: string (Format: YYYY-MM, optional)
+//   - type: string ('CONSUMPTION' | 'RESTOCK')
+//   - source: string ('MANUAL' | 'BARCODE' | 'PHOTO_OCR' | 'PDF_INVOICE' | 'COMPARATOR_5KM')
+//   - quantityDelta: number
+//   - quantityAfter: number (>= 0)
+//
+// Collection: stores/{storeId}
+// Collection: storePrices/{priceId}
+//
+// Collection: guestPasses/{passId}
+// Document ID: Unique Pass ID / Token
+// Fields:
+//   - ownerUid: string (required, immutable) - UID du propriétaire du budget
+//   - passId: string (optional, max 128 chars)
+//   - code: string (optional, max 64 chars) - Code de partage court
+//   - token: string (optional, max 256 chars) - Jeton sécurisé
+//   - label: string (optional, max 150 chars) - Titre ou destination du pass
+//   - duration: string (optional, max 32 chars, ex: '1h', '24h', '7j')
+//   - expiresAt: timestamp (required) - Date d'expiration
+//   - createdAt: string | timestamp (required, immutable)
+//   - updatedAt: string | timestamp (optional)
+//   - revokedAt: string | timestamp (optional)
+//   - isRevoked: bool (required) - Statut de révocation
+//   - guestUid: string (optional, max 128 chars) - UID de l'invité si restreint
+//   - permissions: list of strings (optional, max 20 éléments)
+//   - snapshot: map (optional) - Vue figée du tableau de bord
+//   - targetYearMonth: string (optional, Format: YYYY-MM)
+//
+// Subcollection: guestPasses/{passId}/snapshot/{docId}
+// Fields:
+//   - type: string (optional, max 50 chars)
+//   - data: map (optional)
+//   - updatedAt: string | timestamp (optional)
+// ===============================================================
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ===============================================================
+    // Helper Functions & Security Invariants
+    // ===============================================================
+
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    function isOwner(userId) {
+      return isAuthenticated() && request.auth.uid == userId;
+    }
+
+    function isAdmin() {
+      return isAuthenticated() && (
+        request.auth.token.role == 'admin' ||
+        request.auth.token.admin == true
+      );
+    }
+
+    function isValidYearMonth(yearMonth) {
+      return yearMonth is string && yearMonth.matches('^[0-9]{4}-(0[1-9]|1[0-2])$');
+    }
+
+    function isPositiveNumber(val) {
+      return val is number && val >= 0;
+    }
+
+    function isValidTimestampOrIso(val) {
+      return (val is string && val.size() >= 10 && val.size() <= 50) || val is timestamp;
+    }
+
+    function isValidOptionalString(data, field, minLen, maxLen) {
+      return !(field in data) ||
+        (data[field] is string && data[field].size() >= minLen && data[field].size() <= maxLen);
+    }
+
+    // ===============================================================
+    // Guest Pass Verification Helpers
+    // ===============================================================
+
+    function getGuestPassData(passId) {
+      return get(/databases/$(database)/documents/guestPasses/$(passId)).data;
+    }
+
+    function isGuestPassActiveDoc(passId, ownerUid) {
+      return exists(/databases/$(database)/documents/guestPasses/$(passId)) &&
+        getGuestPassData(passId).ownerUid == ownerUid &&
+        getGuestPassData(passId).isRevoked == false &&
+        (
+          !('guestUid' in getGuestPassData(passId)) ||
+          getGuestPassData(passId).guestUid == null ||
+          getGuestPassData(passId).guestUid == request.auth.uid
+        ) &&
+        (
+          !('expiresAt' in getGuestPassData(passId)) ||
+          !(getGuestPassData(passId).expiresAt is timestamp) ||
+          getGuestPassData(passId).expiresAt > request.time
+        );
+    }
+
+    // Autorise la lecture si l'utilisateur possède un pass invité actif et non expiré pour cet ownerUid
+    function hasValidGuestPass(ownerUid) {
+      return isAuthenticated() && (
+        // 1. Custom Claims Firebase Auth : Rôle 'guest' avec ownerUid assigné
+        (
+          request.auth.token.role == 'guest' &&
+          request.auth.token.ownerUid == ownerUid &&
+          (
+            !('expiresAt' in request.auth.token) ||
+            request.auth.token.expiresAt > request.time.toMillis() / 1000
+          )
+        ) ||
+        // 2. Custom Claim 'guestPassId' pointant vers /guestPasses/{passId}
+        (
+          'guestPassId' in request.auth.token &&
+          request.auth.token.guestPassId is string &&
+          isGuestPassActiveDoc(request.auth.token.guestPassId, ownerUid)
+        ) ||
+        // 3. Custom Claim 'passId' pointant vers /guestPasses/{passId}
+        (
+          'passId' in request.auth.token &&
+          request.auth.token.passId is string &&
+          isGuestPassActiveDoc(request.auth.token.passId, ownerUid)
+        ) ||
+        // 4. Pass lié directement à l'UID invité (authentification anonyme ou compte invité)
+        (
+          exists(/databases/$(database)/documents/guestPasses/$(request.auth.uid)) &&
+          isGuestPassActiveDoc(request.auth.uid, ownerUid)
+        ) ||
+        // 5. Pass composite guestUid_ownerUid
+        (
+          exists(/databases/$(database)/documents/guestPasses/$(request.auth.uid + '_' + ownerUid)) &&
+          isGuestPassActiveDoc(request.auth.uid + '_' + ownerUid, ownerUid)
+        )
+      );
+    }
+
+    function isParentGuestPassActive(passId) {
+      return exists(/databases/$(database)/documents/guestPasses/$(passId)) &&
+        getGuestPassData(passId).isRevoked == false &&
+        (
+          !('expiresAt' in getGuestPassData(passId)) ||
+          !(getGuestPassData(passId).expiresAt is timestamp) ||
+          getGuestPassData(passId).expiresAt > request.time
+        );
+    }
+
+    function isParentGuestPassOwner(passId) {
+      return isAuthenticated() &&
+        exists(/databases/$(database)/documents/guestPasses/$(passId)) &&
+        getGuestPassData(passId).ownerUid == request.auth.uid;
+    }
+
+    // ===============================================================
+    // Domain Validators
+    // ===============================================================
+
+    function isValidGuestPass(data) {
+      return data.ownerUid is string && data.ownerUid.size() > 0 && data.ownerUid.size() <= 128 &&
+        data.isRevoked is bool &&
+        isValidTimestampOrIso(data.expiresAt) &&
+        isValidTimestampOrIso(data.createdAt) &&
+        isValidOptionalString(data, 'id', 1, 128) &&
+        isValidOptionalString(data, 'passId', 1, 128) &&
+        isValidOptionalString(data, 'code', 1, 64) &&
+        isValidOptionalString(data, 'token', 1, 256) &&
+        isValidOptionalString(data, 'label', 1, 150) &&
+        isValidOptionalString(data, 'guestLabel', 1, 150) &&
+        isValidOptionalString(data, 'ownerDisplayName', 1, 150) &&
+        isValidOptionalString(data, 'duration', 1, 32) &&
+        (!('durationHours' in data) || isPositiveNumber(data.durationHours)) &&
+        isValidOptionalString(data, 'guestUid', 1, 128) &&
+        isValidOptionalString(data, 'targetYearMonth', 7, 7) &&
+        (
+          !('permissions' in data) ||
+          (data.permissions is string && data.permissions.size() <= 64) ||
+          (data.permissions is list && data.permissions.size() <= 20)
+        ) &&
+        (!('snapshot' in data) || data.snapshot is map) &&
+        (!('updatedAt' in data) || isValidTimestampOrIso(data.updatedAt)) &&
+        (!('revokedAt' in data) || isValidTimestampOrIso(data.revokedAt));
+    }
+
+    function isValidUserProfile(data) {
+      return isPositiveNumber(data.defaultMonthlyIncome) &&
+        data.currency in ['EUR', 'XAF', 'USD', 'CAD'] &&
+        data.locale in ['fr', 'en', 'es'] &&
+        isValidOptionalString(data, 'displayName', 1, 100) &&
+        isValidOptionalString(data, 'email', 1, 120) &&
+        isValidOptionalString(data, 'photoUrl', 1, 500) &&
+        isValidOptionalString(data, 'dailyNotificationTime', 1, 10) &&
+        (!('fcmTokens' in data) || (data.fcmTokens is list && data.fcmTokens.size() <= 20)) &&
+        (!('location' in data) || data.location is map) &&
+        (!('createdAt' in data) || isValidTimestampOrIso(data.createdAt)) &&
+        (!('updatedAt' in data) || isValidTimestampOrIso(data.updatedAt));
+    }
+
+    function isValidCategoryTemplate(data) {
+      return isPositiveNumber(data.defaultLimit) &&
+        data.type in ['VARIABLE', 'CHARGE_FIXE'] &&
+        data.isRecurring is bool &&
+        isValidOptionalString(data, 'name', 1, 100) &&
+        isValidOptionalString(data, 'icon', 1, 50) &&
+        isValidOptionalString(data, 'colorHex', 1, 20) &&
+        (!('autoDebitOnFirstDay' in data) || data.autoDebitOnFirstDay is bool) &&
+        (!('isArchived' in data) || data.isArchived is bool) &&
+        (!('createdAt' in data) || isValidTimestampOrIso(data.createdAt)) &&
+        (!('updatedAt' in data) || isValidTimestampOrIso(data.updatedAt));
+    }
+
+    function isValidMonthlyBudget(data, yearMonth) {
+      return isValidYearMonth(yearMonth) &&
+        (!('yearMonth' in data) || data.yearMonth == yearMonth) &&
+        (!('status' in data) || data.status in ['OPEN', 'CLOSED']) &&
+        (!('globalAllocated' in data) || isPositiveNumber(data.globalAllocated)) &&
+        (!('totalExtraIncome' in data) || isPositiveNumber(data.totalExtraIncome)) &&
+        (!('totalAgiosAndFees' in data) || isPositiveNumber(data.totalAgiosAndFees)) &&
+        (!('totalFixedCharges' in data) || isPositiveNumber(data.totalFixedCharges)) &&
+        (!('totalVariableSpent' in data) || isPositiveNumber(data.totalVariableSpent)) &&
+        (!('totalSavedViaComparator' in data) || isPositiveNumber(data.totalSavedViaComparator)) &&
+        (!('realDisposableIncome' in data) || data.realDisposableIncome is number) &&
+        (!('projectedEndOfMonthBalance' in data) || data.projectedEndOfMonthBalance is number) &&
+        (!('createdAt' in data) || isValidTimestampOrIso(data.createdAt)) &&
+        (!('closedAt' in data) || isValidTimestampOrIso(data.closedAt)) &&
+        (!('updatedAt' in data) || isValidTimestampOrIso(data.updatedAt));
+    }
+
+    function isValidCategory(data) {
+      return isPositiveNumber(data.allocatedLimit) &&
+        isPositiveNumber(data.spentAmount) &&
+        isValidOptionalString(data, 'name', 1, 100) &&
+        isValidOptionalString(data, 'icon', 1, 50) &&
+        isValidOptionalString(data, 'colorHex', 1, 20) &&
+        (!('type' in data) || data.type in ['VARIABLE', 'CHARGE_FIXE']) &&
+        (!('consumptionPercentage' in data) || isPositiveNumber(data.consumptionPercentage)) &&
+        (!('gaugeState' in data) || data.gaugeState in ['HEALTHY', 'WARNING', 'CRITICAL']) &&
+        (!('autoDebited' in data) || data.autoDebited is bool) &&
+        (!('isEnabledForMonth' in data) || data.isEnabledForMonth is bool);
+    }
+
+    function isValidTransaction(data, yearMonth) {
+      return data.yearMonth == yearMonth &&
+        isPositiveNumber(data.amount) &&
+        isValidOptionalString(data, 'label', 1, 200) &&
+        isValidOptionalString(data, 'note', 0, 1000) &&
+        isValidOptionalString(data, 'categoryId', 1, 100) &&
+        isValidOptionalString(data, 'categoryName', 1, 100) &&
+        isValidOptionalString(data, 'date', 1, 50) &&
+        (!('type' in data) || data.type in ['VARIABLE', 'CHARGE_FIXE']) &&
+        (!('source' in data) || data.source in ['MANUAL', 'BARCODE', 'PHOTO_OCR', 'PDF_INVOICE', 'COMPARATOR_5KM', 'AUTO_FIXED_CHARGE']) &&
+        (!('savedAmountViaComparator' in data) || isPositiveNumber(data.savedAmountViaComparator)) &&
+        (!('createdAt' in data) || isValidTimestampOrIso(data.createdAt)) &&
+        (!('updatedAt' in data) || isValidTimestampOrIso(data.updatedAt));
+    }
+
+    function isValidAIInsight(data) {
+      return (!('code' in data) || data.code in ['IA-01_FORECAST', 'IA-02_ANOMALY', 'IA-03_FIXED_CHARGES', 'IA-04_HYBRID_SAVINGS', 'IA-05_SMART_DEPLETION']) &&
+        (!('severity' in data) || data.severity in ['INFO', 'WARNING', 'CRITICAL', 'OPPORTUNITY']) &&
+        isValidOptionalString(data, 'title', 1, 200) &&
+        isValidOptionalString(data, 'description', 1, 2000) &&
+        (!('isApplied' in data) || data.isApplied is bool) &&
+        (!('createdAt' in data) || isValidTimestampOrIso(data.createdAt));
+    }
+
+    function isValidPantryItem(data) {
+      return isPositiveNumber(data.currentQuantity) &&
+        isPositiveNumber(data.alertThreshold) &&
+        isValidOptionalString(data, 'name', 1, 200) &&
+        isValidOptionalString(data, 'normalizedProductKey', 1, 150) &&
+        (!('category' in data) || (data.category is string && data.category.size() <= 60)) &&
+        (!('unit' in data) || (data.unit is string && data.unit.size() <= 40)) &&
+        (!('needsRestock' in data) || data.needsRestock is bool) &&
+        (!('depletedAt' in data) || data.depletedAt == null || isValidTimestampOrIso(data.depletedAt)) &&
+        (!('expirationDate' in data) || data.expirationDate == null || isValidTimestampOrIso(data.expirationDate)) &&
+        (!('lastPricePaid' in data) || isPositiveNumber(data.lastPricePaid)) &&
+        (!('lastUpdatedAt' in data) || isValidTimestampOrIso(data.lastUpdatedAt));
+    }
+
+    function isValidPantryMovement(data) {
+      return (!('yearMonth' in data) || isValidYearMonth(data.yearMonth)) &&
+        data.type in ['CONSUMPTION', 'RESTOCK'] &&
+        data.source in ['MANUAL', 'BARCODE', 'PHOTO_OCR', 'PDF_INVOICE', 'COMPARATOR_5KM'] &&
+        isValidOptionalString(data, 'itemId', 1, 100) &&
+        isValidOptionalString(data, 'itemName', 1, 200) &&
+        (!('quantityDelta' in data) || data.quantityDelta is number) &&
+        (!('quantityAfter' in data) || (data.quantityAfter is number && data.quantityAfter >= 0)) &&
+        (!('unitPricePaid' in data) || isPositiveNumber(data.unitPricePaid)) &&
+        (!('savedAmount' in data) || isPositiveNumber(data.savedAmount)) &&
+        (!('timestamp' in data) || isValidTimestampOrIso(data.timestamp));
+    }
+
+    function isValidStore(data) {
+      return data.geohash is string && data.geohash.size() <= 20 &&
+        data.lat is number &&
+        data.lng is number &&
+        isValidOptionalString(data, 'name', 1, 200) &&
+        isValidOptionalString(data, 'address', 1, 300) &&
+        (!('brand' in data) || data.brand in ['LECLERC', 'CARREFOUR', 'LIDL', 'AUCHAN', 'INTERMARCHE', 'SUPER_U', 'OTHER']);
+    }
+
+    function isValidStorePrice(data) {
+      return isPositiveNumber(data.unitPrice) &&
+        data.storeId is string && data.storeId.size() <= 100 &&
+        isValidOptionalString(data, 'storeName', 1, 200) &&
+        isValidOptionalString(data, 'rawProductLabel', 1, 250) &&
+        isValidOptionalString(data, 'normalizedProductKey', 1, 150) &&
+        (!('unit' in data) || data.unit in ['unit', 'kg', 'g', 'L', 'mL', 'pack']) &&
+        (!('isStoreBrandAlternative' in data) || data.isStoreBrandAlternative is bool) &&
+        (!('promoPrice' in data) || isPositiveNumber(data.promoPrice));
+    }
+
+    // ===============================================================
+    // 1. Collection Racine : Passes Invités (/guestPasses/{passId})
+    // ===============================================================
+    match /guestPasses/{passId} {
+      // Lecture unitaire (get) : autorisée si pass non révoqué (accès par code PIN / jeton invité),
+      // ou par le propriétaire authentifié (même révoqué)
+      allow get: if (
+          resource.data.isRevoked == false &&
+          (!('expiresAt' in resource.data) || !(resource.data.expiresAt is timestamp) || resource.data.expiresAt > request.time)
+        )
+        || (isAuthenticated() && request.auth.uid == resource.data.ownerUid);
+
+      // Requête de liste (list) : réservée aux utilisateurs authentifiés
+      allow list: if isAuthenticated() && (
+        (
+          resource.data.isRevoked == false &&
+          (!('expiresAt' in resource.data) || !(resource.data.expiresAt is timestamp) || resource.data.expiresAt > request.time)
+        ) ||
+        request.auth.uid == resource.data.ownerUid
+      );
+
+      // Création : propriétaire authentifié uniquement, pass valide et non révoqué
+      allow create: if isAuthenticated()
+        && request.auth.uid == request.resource.data.ownerUid
+        && request.resource.data.isRevoked == false
+        && (!(request.resource.data.expiresAt is timestamp) || request.resource.data.expiresAt > request.time)
+        && isValidGuestPass(request.resource.data);
+
+      // Modification : propriétaire uniquement, protection des champs immuables
+      allow update: if isAuthenticated()
+        && request.auth.uid == resource.data.ownerUid
+        && request.resource.data.ownerUid == resource.data.ownerUid
+        && (!('createdAt' in resource.data) || !('createdAt' in request.resource.data) || request.resource.data.createdAt == resource.data.createdAt)
+        && isValidGuestPass(request.resource.data);
+
+      // Suppression : propriétaire uniquement
+      allow delete: if isAuthenticated() && request.auth.uid == resource.data.ownerUid;
+
+      // 1a. Sous-collection : Snapshot du tableau de bord figé (/guestPasses/{passId}/snapshot/{docId})
+      match /snapshot/{docId} {
+        allow read: if isParentGuestPassOwner(passId) || isParentGuestPassActive(passId);
+        allow create, update: if isParentGuestPassOwner(passId)
+          && (!('type' in request.resource.data) || request.resource.data.type is string);
+        allow delete: if isParentGuestPassOwner(passId);
+      }
+    }
+
+    // ===============================================================
+    // 2. Profil Utilisateur & Espace Personnel (/users/{userId})
+    // ===============================================================
+    match /users/{userId} {
+      // Lecture : propriétaire OU invité muni d'un pass actif
+      allow read: if isOwner(userId) || hasValidGuestPass(userId);
+
+      // Écriture : strictement réservée au propriétaire
+      allow create: if isOwner(userId)
+        && isValidUserProfile(request.resource.data)
+        && (!('uid' in request.resource.data) || request.resource.data.uid == userId);
+
+      allow update: if isOwner(userId)
+        && isValidUserProfile(request.resource.data)
+        && (!('uid' in request.resource.data) || request.resource.data.uid == userId)
+        && (!('createdAt' in resource.data) || !('createdAt' in request.resource.data) || request.resource.data.createdAt == resource.data.createdAt);
+
+      allow delete: if isOwner(userId);
+
+      // 2a. Modèles de postes récurrents "Zéro Ressaisie" (US 1.2, US 1.6)
+      match /categoryTemplates/{templateId} {
+        allow read: if isOwner(userId) || hasValidGuestPass(userId);
+        allow create, update: if isOwner(userId)
+          && isValidCategoryTemplate(request.resource.data);
+        allow delete: if isOwner(userId);
+      }
+
+      // 2b. Document maître d'un mois donné (US 1.3, US 1.4)
+      match /monthlyBudgets/{yearMonth} {
+        allow read: if isOwner(userId) || hasValidGuestPass(userId);
+        allow create, update: if isOwner(userId)
+          && isValidMonthlyBudget(request.resource.data, yearMonth);
+        allow delete: if isOwner(userId);
+
+        // Enveloppes budgétaires spécifiques au mois
+        match /categories/{categoryId} {
+          allow read: if isOwner(userId) || hasValidGuestPass(userId);
+          allow create, update: if isOwner(userId)
+            && isValidCategory(request.resource.data);
+          allow delete: if isOwner(userId);
+        }
+
+        // Transactions, dépenses variables, charges fixes et achats réserve
+        match /transactions/{transactionId} {
+          allow read: if isOwner(userId) || hasValidGuestPass(userId);
+          allow create, update: if isOwner(userId)
+            && isValidTransaction(request.resource.data, yearMonth);
+          allow delete: if isOwner(userId);
+        }
+
+        // Analyses et prédictions du Coach Financier IA (US 6.1..6.4)
+        match /aiInsights/{insightId} {
+          allow read: if isOwner(userId) || hasValidGuestPass(userId);
+          allow create, update: if isOwner(userId)
+            && isValidAIInsight(request.resource.data);
+          allow delete: if isOwner(userId);
+        }
+      }
+
+      // 2c. Réserve domestique actuelle (US 2.1, US 2.2, US 2.3)
+      match /pantryItems/{itemId} {
+        allow read: if isOwner(userId) || hasValidGuestPass(userId);
+        allow create, update: if isOwner(userId)
+          && isValidPantryItem(request.resource.data);
+        allow delete: if isOwner(userId);
+      }
+
+      // 2d. Historique horodaté des mouvements de réserve (US 2.2, US 5.2)
+      match /pantryMovements/{movementId} {
+        allow read: if isOwner(userId) || hasValidGuestPass(userId);
+        allow create, update: if isOwner(userId)
+          && isValidPantryMovement(request.resource.data);
+        allow delete: if isOwner(userId);
+      }
+
+      // 2e. Copies utilisateur des passes invités générés (US 1.5)
+      match /guestPasses/{passId} {
+        allow read, write: if isOwner(userId);
+      }
+    }
+
+    // ===============================================================
+    // 3. Référentiel des magasins locaux (Geohash 5 km - US 3.1)
+    // ===============================================================
+    match /stores/{storeId} {
+      allow read: if isAuthenticated();
+      allow create, update: if isAdmin()
+        && isValidStore(request.resource.data);
+      allow delete: if isAdmin();
+    }
+
+    // ===============================================================
+    // 4. Relevés de prix géolocalisés (US 3.2, US 4.3)
+    // ===============================================================
+    match /storePrices/{priceId} {
+      allow read: if isAuthenticated();
+      allow create, update: if isAdmin()
+        && isValidStorePrice(request.resource.data);
+      allow delete: if isAdmin();
+    }
+  }
+}

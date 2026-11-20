@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+
+<html class="h-full bg-surface" lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>EcoPanier &amp; Budget IA - Dashboard Budget</title>
+<!-- Google Fonts & Material Symbols -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@500;600;700;800&amp;family=Space+Grotesk:wght@500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS CDN -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Theme Configuration Injection -->
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "surface-bright": "#f7f9fb",
+            "tertiary-fixed": "#51b0f6",
+            "tertiary-container": "#51b0f6",
+            "surface": "#f7f9fb",
+            "on-surface": "#2c3437",
+            "on-surface-variant": "#596064",
+            "outline-variant": "#acb3b7",
+            "on-tertiary-container": "#002d47",
+            "primary-fixed": "#9cf2e8",
+            "surface-container-high": "#e3e9ed",
+            "primary-container": "#9cf2e8",
+            "secondary-fixed": "#e2dfff",
+            "inverse-on-surface": "#9a9d9f",
+            "on-secondary-fixed": "#2a13c5",
+            "primary-dim": "#005e57",
+            "outline": "#747c80",
+            "secondary-container": "#e2dfff",
+            "surface-tint": "#006b63",
+            "inverse-primary": "#a7fef3",
+            "primary": "#006b63",
+            "secondary-fixed-dim": "#d2d0ff",
+            "secondary-dim": "#4135d8",
+            "surface-container-lowest": "#ffffff",
+            "on-background": "#2c3437",
+            "on-primary-container": "#005c56",
+            "on-primary": "#e2fffa",
+            "on-secondary-fixed-variant": "#4a40e0",
+            "tertiary-fixed-dim": "#40a2e7",
+            "primary-fixed-dim": "#8ee4d9",
+            "on-tertiary-fixed": "#000d19",
+            "background": "#f7f9fb",
+            "on-tertiary-fixed-variant": "#003655",
+            "tertiary-dim": "#005886",
+            "surface-variant": "#dce4e8",
+            "error-container": "#fa746f",
+            "tertiary": "#006499",
+            "on-error": "#fff7f6",
+            "error": "#a83836",
+            "on-primary-fixed": "#004842",
+            "on-error-container": "#6e0a12",
+            "surface-container": "#eaeff2",
+            "secondary": "#4e45e4",
+            "surface-container-highest": "#dce4e8",
+            "error-dim": "#67040d",
+            "surface-container-low": "#f0f4f7",
+            "on-tertiary": "#f6f9ff",
+            "on-secondary": "#fbf7ff",
+            "on-primary-fixed-variant": "#006760",
+            "surface-dim": "#d4dbdf",
+            "inverse-surface": "#0b0f10",
+            "on-secondary-container": "#3f33d6"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {},
+          "fontFamily": {
+            "headline": ["Plus Jakarta Sans", "sans-serif"],
+            "display": ["Plus Jakarta Sans", "sans-serif"],
+            "body": ["Inter", "sans-serif"],
+            "label": ["Space Grotesk", "sans-serif"]
+          },
+          "fontSize": {}
+        },
+      },
+    }
+  </script>
+</head>
+<body class="h-full bg-surface text-on-surface font-body antialiased flex flex-row overflow-hidden selection:bg-primary-container selection:text-on-primary-container">
+<!-- ========================================================================= -->
+<!-- SHARED COMPONENT: SideNavBar (desktop_fixed_sidebar)                      -->
+<!-- ========================================================================= -->
+<aside class="fixed top-0 left-0 w-[260px] h-screen z-40 p-4 bg-surface-container-low border-r border-outline-variant/30 flex flex-col justify-between select-none">
+<!-- Top Group: Brand & Profile & Nav Items -->
+<div class="space-y-4">
+<!-- Brand Logo / Headline -->
+<div class="flex items-center justify-between px-2 pt-1 pb-1">
+<div class="flex items-center gap-2.5">
+<div class="w-9 h-9 rounded-xl bg-primary text-on-primary flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-[20px]" data-icon="shopping_basket">shopping_basket</span>
+</div>
+<div>
+<h1 class="font-headline text-lg font-bold tracking-tight text-primary leading-tight">EcoPanier</h1>
+<span class="inline-block text-[10px] font-label font-bold text-on-surface-variant bg-surface-container px-1.5 py-0.5 rounded tracking-wide">5 km Sovereign Ledger</span>
+</div>
+</div>
+</div>
+<!-- User Profile Card Badge -->
+<div class="px-2.5 py-2 rounded-xl bg-surface-container-lowest border border-outline-variant/20 flex items-center justify-between">
+<div class="flex items-center gap-2.5 min-w-0">
+<div class="w-8 h-8 rounded-full bg-secondary/10 text-secondary font-headline font-bold text-xs flex items-center justify-center shrink-0">
+            AM
+          </div>
+<div class="min-w-0">
+<p class="font-headline font-bold text-xs truncate text-on-surface leading-tight">Alexandre Martin</p>
+<p class="font-body text-[11px] text-on-surface-variant flex items-center gap-1">
+<span>EUR • FR</span>
+<span class="inline-block w-1 h-1 rounded-full bg-primary"></span>
+<span class="text-primary font-medium">Vérifié</span>
+</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-[16px] text-primary" data-icon="verified_user">verified_user</span>
+</div>
+<!-- Quick Action / CTA -->
+<button class="w-full flex items-center justify-center gap-2 py-2 px-3 rounded-xl bg-secondary text-on-secondary font-headline text-xs font-semibold shadow-sm hover:opacity-95 transition-opacity active:scale-[0.98]">
+<span class="material-symbols-outlined text-[18px]" data-icon="document_scanner">document_scanner</span>
+<span>Scanner Facture IA</span>
+</button>
+<!-- Navigation Vertical Items (Derived from JSON) -->
+<nav aria-label="Menu principal" class="space-y-1 pt-1">
+<!-- Tab 1: Dashboard Budget (ACTIVE) -->
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-xl bg-primary-container text-on-primary-container font-medium text-sm transition-all duration-150 active:scale-[0.98]" href="#dashboard">
+<span class="material-symbols-outlined text-[19px]" data-icon="dashboard">dashboard</span>
+<span class="flex-1 font-headline font-semibold text-xs tracking-tight">Dashboard Budget</span>
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+</a>
+<!-- Tab 2: Modèles Récurrents -->
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-on-surface-variant hover:bg-surface-container-highest/60 hover:text-on-surface transition-colors text-sm active:scale-[0.98]" href="#recurrents">
+<span class="material-symbols-outlined text-[19px]" data-icon="event_repeat">event_repeat</span>
+<span class="flex-1 font-label text-xs">Modèles Récurrents</span>
+</a>
+<!-- Tab 3: Ma Réserve 32 art. -->
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-on-surface-variant hover:bg-surface-container-highest/60 hover:text-on-surface transition-colors text-sm active:scale-[0.98]" href="#reserve">
+<span class="material-symbols-outlined text-[19px]" data-icon="inventory_2">inventory_2</span>
+<span class="flex-1 font-label text-xs">Ma Réserve 32 art.</span>
+<span class="text-[10px] font-bold px-1.5 py-0.5 rounded-full bg-error-container text-on-error-container">3 dlc</span>
+</a>
+<!-- Tab 4: Comparateur 5 km -->
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-on-surface-variant hover:bg-surface-container-highest/60 hover:text-on-surface transition-colors text-sm active:scale-[0.98]" href="#comparateur">
+<span class="material-symbols-outlined text-[19px]" data-icon="storefront">storefront</span>
+<span class="flex-1 font-label text-xs">Comparateur 5 km</span>
+</a>
+<!-- Tab 5: Scanner Factures IA -->
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-on-surface-variant hover:bg-surface-container-highest/60 hover:text-on-surface transition-colors text-sm active:scale-[0.98]" href="#scanner">
+<span class="material-symbols-outlined text-[19px]" data-icon="document_scanner">document_scanner</span>
+<span class="flex-1 font-label text-xs">Scanner Factures IA</span>
+</a>
+<!-- Tab 6: Chef Réserve -->
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-on-surface-variant hover:bg-surface-container-highest/60 hover:text-on-surface transition-colors text-sm active:scale-[0.98]" href="#chef">
+<span class="material-symbols-outlined text-[19px]" data-icon="restaurant">restaurant</span>
+<span class="flex-1 font-label text-xs">Chef Réserve</span>
+<span class="text-[10px] font-bold px-1.5 py-0.5 rounded bg-secondary-container text-on-secondary-container">4 Cuisines</span>
+</a>
+<!-- Tab 7: Graphiques -->
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-on-surface-variant hover:bg-surface-container-highest/60 hover:text-on-surface transition-colors text-sm active:scale-[0.98]" href="#graphiques">
+<span class="material-symbols-outlined text-[19px]" data-icon="bar_chart">bar_chart</span>
+<span class="flex-1 font-label text-xs">Graphiques</span>
+</a>
+<!-- Tab 8: Paramètres -->
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-on-surface-variant hover:bg-surface-container-highest/60 hover:text-on-surface transition-colors text-sm active:scale-[0.98]" href="#parametres">
+<span class="material-symbols-outlined text-[19px]" data-icon="settings">settings</span>
+<span class="flex-1 font-label text-xs">Paramètres</span>
+</a>
+</nav>
+</div>
+<!-- Bottom Sidebar Section: Security & Sync & Dark Mode Toggle -->
+<div class="space-y-3 pt-3 border-t border-outline-variant/30">
+<!-- Security Status Badge -->
+<div class="p-2.5 rounded-xl bg-surface-container-high/60 flex items-center justify-between text-[11px]">
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-[15px] text-primary" data-icon="lock">lock</span>
+<span class="font-body text-xs font-medium">Chiffrement Local</span>
+</div>
+<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+</div>
+<!-- Mode Sombre Switch Item (Footer Tab from JSON) -->
+<button class="w-full flex items-center justify-between px-3 py-2 rounded-xl text-on-surface-variant hover:bg-surface-container transition-colors text-xs font-label">
+<div class="flex items-center gap-2.5">
+<span class="material-symbols-outlined text-[18px]" data-icon="dark_mode">dark_mode</span>
+<span>Mode sombre</span>
+</div>
+<div class="w-8 h-4 rounded-full bg-surface-variant relative transition-colors">
+<span class="w-3.5 h-3.5 bg-surface-container-lowest rounded-full absolute top-[1px] left-[1px] shadow-sm"></span>
+</div>
+</button>
+<div class="px-2 text-[10px] text-on-surface-variant/70 font-label flex items-center justify-between">
+<span>Sovereign Ledger v4.1</span>
+<span>Node: 127.0.0.1</span>
+</div>
+</div>
+</aside>
+<!-- ========================================================================= -->
+<!-- MAIN WORKSPACE (Sticky Header + Bento Content)                            -->
+<!-- ========================================================================= -->
+<div class="ml-[260px] flex-1 flex flex-col h-screen overflow-y-auto bg-surface">
+<!-- ========================================================================= -->
+<!-- SHARED COMPONENT: TopNavBar (desktop_header)                              -->
+<!-- ========================================================================= -->
+<header class="sticky top-0 z-30 h-16 w-full bg-surface/80 backdrop-blur-md border-b border-outline-variant/30 flex justify-between items-center px-8 shrink-0">
+<!-- Left Anchor & Breadcrumb Context -->
+<div class="flex items-center gap-3">
+<h2 class="font-headline font-bold text-base text-primary">Dashboard Budget Mensuel</h2>
+<span class="px-2 py-0.5 text-[11px] font-label font-bold rounded-full bg-primary-container text-on-primary-container">v4.1 Stable</span>
+</div>
+<!-- Omnipresent Month Navigation Selector (from JSON navigation_links) -->
+<div class="flex items-center bg-surface-container-low p-1 rounded-xl border border-outline-variant/20 shadow-sm">
+<a class="text-on-surface-variant text-sm px-2.5 py-1.5 hover:text-on-surface transition-colors font-headline text-xs flex items-center gap-1" href="#prev">
+<span class="material-symbols-outlined text-[14px]" data-icon="chevron_left">chevron_left</span>
+<span>&lt; Octobre 2026</span>
+</a>
+<div class="text-on-surface font-semibold text-sm px-3.5 py-1.5 rounded-lg bg-surface-container-lowest shadow-sm border border-outline-variant/10 text-primary font-headline text-xs flex items-center gap-1.5">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+<span>Novembre 2026 (En cours)</span>
+</div>
+<a class="text-on-surface-variant text-sm px-2.5 py-1.5 hover:text-on-surface transition-colors font-headline text-xs flex items-center gap-1" href="#next">
+<span>Décembre 2026 &gt;</span>
+<span class="material-symbols-outlined text-[14px]" data-icon="chevron_right">chevron_right</span>
+</a>
+</div>
+<!-- Trailing Action Cluster (from JSON) -->
+<div class="flex items-center gap-3">
+<!-- Secondary Button: Scanner Facture IA -->
+<button class="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-secondary-container text-on-secondary-container font-headline font-semibold text-xs transition-all duration-150 active:scale-95 shadow-sm hover:opacity-90">
+<span class="material-symbols-outlined text-[16px]" data-icon="document_scanner">document_scanner</span>
+<span>Scanner Facture IA</span>
+</button>
+<!-- Primary Button: + Nouvelle opération -->
+<button class="flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-primary text-on-primary font-headline font-semibold text-xs transition-all duration-150 active:scale-95 shadow-sm hover:bg-primary-dim">
+<span class="material-symbols-outlined text-[18px]" data-icon="add">add</span>
+<span>+ Nouvelle opération</span>
+</button>
+<div class="h-6 w-px bg-outline-variant/30 mx-1"></div>
+<!-- Notification Bell Icon -->
+<button class="relative p-2 text-on-surface-variant hover:text-on-surface hover:bg-surface-container rounded-lg transition-colors">
+<span class="material-symbols-outlined text-[20px]" data-icon="notifications">notifications</span>
+<span class="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-secondary"></span>
+</button>
+<!-- Help Outline Icon -->
+<button class="p-2 text-on-surface-variant hover:text-on-surface hover:bg-surface-container rounded-lg transition-colors">
+<span class="material-symbols-outlined text-[20px]" data-icon="help_outline">help_outline</span>
+</button>
+</div>
+</header>
+<!-- ========================================================================= -->
+<!-- CONTENT CANVAS: Sovereign Ledger Bento Grid (1440px target layout)       -->
+<!-- ========================================================================= -->
+<main class="p-8 space-y-6 max-w-[1440px] w-full mx-auto">
+<!-- --------------------------------------------------------------------- -->
+<!-- ROW 1: 4 BENTO KPI CARDS (3 columns each in a 12-column grid)         -->
+<!-- --------------------------------------------------------------------- -->
+<section aria-label="Indicateurs clés" class="grid grid-cols-12 gap-5">
+<!-- KPI 1 : RESTE À VIVRE RÉEL -->
+<div class="col-span-3 bg-surface-container-lowest p-5 rounded-xl border border-outline-variant/30 shadow-[0_2px_8px_rgba(0,0,0,0.02)] flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-2">
+<span class="font-label text-xs uppercase tracking-wider text-on-surface-variant font-bold">Reste à vivre réel</span>
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-bold bg-primary-container text-on-primary-container">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span> Actif
+              </span>
+</div>
+<div class="flex items-baseline gap-2">
+<span class="font-headline font-extrabold text-2xl text-on-surface">1 140,00 €</span>
+</div>
+<p class="font-body text-xs text-on-surface-variant mt-1">Sur 2 500 € alloués • 45,6% disponible</p>
+</div>
+<!-- Semantic Gauge Bar (<75% green) -->
+<div class="mt-4 pt-3 border-t border-outline-variant/15">
+<div class="w-full bg-surface-container h-2 rounded-full overflow-hidden">
+<div class="bg-primary h-full rounded-full transition-all duration-500" style="width: 45.6%;"></div>
+</div>
+<div class="flex justify-between items-center text-[10px] text-on-surface-variant mt-1.5 font-label">
+<span>Engagé: 1 360,00 €</span>
+<span>Total: 2 500,00 €</span>
+</div>
+</div>
+</div>
+<!-- KPI 2 : BOUCLIER ANTI-AGIOS IA -->
+<div class="col-span-3 bg-surface-container-lowest p-5 rounded-xl border border-outline-variant/30 shadow-[0_2px_8px_rgba(0,0,0,0.02)] flex flex-col justify-between relative overflow-hidden">
+<div class="absolute -right-4 -bottom-4 w-20 h-20 bg-secondary/5 rounded-full blur-xl pointer-events-none"></div>
+<div>
+<div class="flex items-center justify-between mb-2">
+<span class="font-label text-xs uppercase tracking-wider text-secondary font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]" data-icon="shield">shield</span>
+                Bouclier Anti-Agios IA
+              </span>
+<span class="px-2 py-0.5 rounded-full text-[11px] font-bold bg-secondary-container text-on-secondary-container">
+                Rythme optimal
+              </span>
+</div>
+<div class="flex items-baseline gap-2">
+<span class="font-headline font-extrabold text-2xl text-on-surface">54,28 €<span class="text-sm font-normal text-on-surface-variant">/jour</span></span>
+</div>
+<p class="font-body text-xs text-on-surface-variant mt-1 flex items-center gap-1">
+<span class="material-symbols-outlined text-[13px] text-primary" data-icon="trending_up">trending_up</span>
+              Projection: <span class="font-semibold text-on-surface">+165 € d'épargne</span>
+</p>
+</div>
+<div class="mt-4 pt-3 border-t border-outline-variant/15 flex items-center justify-between text-[11px] font-body text-on-surface-variant">
+<span class="flex items-center gap-1 text-primary font-medium">
+<span class="material-symbols-outlined text-[14px]" data-icon="check_circle">check_circle</span>
+              Sécurité découvert 0 € garanti
+            </span>
+<span class="font-label font-bold text-[10px] text-secondary">Coach IA Actif</span>
+</div>
+</div>
+<!-- KPI 3 : CHARGES FIXES ACTIVES -->
+<div class="col-span-3 bg-surface-container-lowest p-5 rounded-xl border border-outline-variant/30 shadow-[0_2px_8px_rgba(0,0,0,0.02)] flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-2">
+<span class="font-label text-xs uppercase tracking-wider text-on-surface-variant font-bold">Charges fixes actives</span>
+<span class="px-2 py-0.5 rounded-full text-[11px] font-bold bg-primary-container text-on-primary-container">
+                100% honorés
+              </span>
+</div>
+<div class="flex items-baseline gap-2">
+<span class="font-headline font-extrabold text-2xl text-on-surface">-980,00 €</span>
+</div>
+<p class="font-body text-xs text-on-surface-variant mt-1">5 prélèvements reconduits au 1er</p>
+</div>
+<div class="mt-4 pt-3 border-t border-outline-variant/15 flex items-center justify-between text-[11px]">
+<span class="text-on-surface-variant font-body">Prochain: 01 Décembre 2026</span>
+<span class="font-headline font-bold text-xs text-primary flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[14px]" data-icon="event_available">event_available</span>
+              Verrouillé
+            </span>
+</div>
+</div>
+<!-- KPI 4 : ÉCONOMIES 5 KM & ANTI-GASPI -->
+<div class="col-span-3 bg-surface-container-lowest p-5 rounded-xl border border-outline-variant/30 shadow-[0_2px_8px_rgba(0,0,0,0.02)] flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-2">
+<span class="font-label text-xs uppercase tracking-wider text-on-surface-variant font-bold">Économies 5 km &amp; Anti-gaspi</span>
+<span class="px-2 py-0.5 rounded-full text-[11px] font-bold bg-primary-container text-on-primary-container">
+                Gain mesuré
+              </span>
+</div>
+<div class="flex items-baseline gap-2">
+<span class="font-headline font-extrabold text-2xl text-primary">+124,50 €</span>
+<span class="text-xs font-bold text-primary font-headline">+18% vs Oct.</span>
+</div>
+<p class="font-body text-xs text-on-surface-variant mt-1">46,50 € réserve + 78,00 € comparateur</p>
+</div>
+<div class="mt-4 pt-3 border-t border-outline-variant/15 flex items-center justify-between text-[11px] font-label text-on-surface-variant">
+<span>Rayon actif : 5.0 km</span>
+<span class="text-primary font-bold">3 drives surveillés</span>
+</div>
+</div>
+</section>
+<!-- --------------------------------------------------------------------- -->
+<!-- ROW 2: SPLIT VIEW (7 Cols Budget Envelopes / 5 Cols Alerts & Tx)      -->
+<!-- --------------------------------------------------------------------- -->
+<section class="grid grid-cols-12 gap-6 items-start">
+<!-- =================================================================== -->
+<!-- LEFT COLUMN: ENVELOPPES BUDGÉTAIRES (7 Colonnes)                    -->
+<!-- =================================================================== -->
+<div class="col-span-7 bg-surface-container-lowest p-6 rounded-xl border border-outline-variant/30 shadow-[0_2px_8px_rgba(0,0,0,0.02)] space-y-5">
+<!-- Enveloppes Header & Filter Pills -->
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-2 border-b border-outline-variant/20">
+<div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]" data-icon="account_balance_wallet">account_balance_wallet</span>
+<h3 class="font-headline font-bold text-base text-on-surface">Enveloppes Budgétaires</h3>
+<span class="text-xs font-label text-on-surface-variant bg-surface-container px-2 py-0.5 rounded-full">8 au total</span>
+</div>
+<p class="text-xs text-on-surface-variant font-body mt-0.5">Suivi de consommation et seuils d'alerte en temps réel</p>
+</div>
+<!-- Segmented Quick Filters -->
+<div class="flex items-center bg-surface-container-low p-1 rounded-xl border border-outline-variant/20 text-xs font-label">
+<button class="px-2.5 py-1 rounded-lg bg-surface-container-lowest shadow-sm text-on-surface font-bold">Toutes (8)</button>
+<button class="px-2.5 py-1 rounded-lg text-on-surface-variant hover:text-on-surface transition-colors">Variables (5)</button>
+<button class="px-2.5 py-1 rounded-lg text-on-surface-variant hover:text-on-surface transition-colors">Fixes (3)</button>
+<button class="px-2.5 py-1 rounded-lg text-error font-medium flex items-center gap-1 hover:bg-error-container/20 transition-colors">
+<span class="w-1.5 h-1.5 rounded-full bg-error"></span> Alerte (2)
+              </button>
+</div>
+</div>
+<!-- 2-Column Grid of 6 Detailed Envelope Cards -->
+<div class="grid grid-cols-2 gap-3.5">
+<!-- Envelope 1 : Courses & Réserve (Amber 85%) -->
+<div class="p-3.5 rounded-xl border border-outline-variant/25 bg-surface-container-lowest hover:border-outline-variant/50 transition-colors">
+<div class="flex items-center justify-between mb-2">
+<div class="flex items-center gap-2">
+<div class="w-7 h-7 rounded-lg bg-surface-container text-on-surface flex items-center justify-center">
+<span class="material-symbols-outlined text-[16px]" data-icon="local_grocery_store">local_grocery_store</span>
+</div>
+<span class="font-headline font-bold text-xs text-on-surface">Courses &amp; Réserve</span>
+</div>
+<!-- 85% amber badge -->
+<span class="px-2 py-0.5 rounded text-[10px] font-label font-bold bg-amber-100 text-amber-800">85%</span>
+</div>
+<div class="flex items-baseline justify-between text-xs mb-1.5">
+<span class="font-headline font-bold text-sm text-on-surface">382,50 €</span>
+<span class="text-on-surface-variant text-[11px]">sur 450,00 €</span>
+</div>
+<!-- Gauge bar: Amber for 75-99% -->
+<div class="w-full bg-surface-container h-2 rounded-full overflow-hidden mb-2">
+<div class="bg-amber-500 h-full rounded-full" style="width: 85%;"></div>
+</div>
+<div class="flex items-center justify-between text-[11px] text-on-surface-variant">
+<span>Reste : <strong class="text-on-surface font-semibold">67,50 €</strong></span>
+<span class="text-[10px] font-label">14j restants</span>
+</div>
+</div>
+<!-- Envelope 2 : Loyer & Charges (100% Honoré Green) -->
+<div class="p-3.5 rounded-xl border border-outline-variant/25 bg-surface-container-lowest hover:border-outline-variant/50 transition-colors">
+<div class="flex items-center justify-between mb-2">
+<div class="flex items-center gap-2">
+<div class="w-7 h-7 rounded-lg bg-surface-container text-on-surface flex items-center justify-center">
+<span class="material-symbols-outlined text-[16px]" data-icon="home">home</span>
+</div>
+<span class="font-headline font-bold text-xs text-on-surface">Loyer &amp; Charges</span>
+</div>
+<span class="px-2 py-0.5 rounded text-[10px] font-label font-bold bg-primary-container text-on-primary-container">Payé 01/11</span>
+</div>
+<div class="flex items-baseline justify-between text-xs mb-1.5">
+<span class="font-headline font-bold text-sm text-on-surface">750,00 €</span>
+<span class="text-on-surface-variant text-[11px]">sur 750,00 €</span>
+</div>
+<!-- 100% settled progress -->
+<div class="w-full bg-surface-container h-2 rounded-full overflow-hidden mb-2">
+<div class="bg-primary h-full rounded-full" style="width: 100%;"></div>
+</div>
+<div class="flex items-center justify-between text-[11px] text-on-surface-variant">
+<span>Statut : <strong class="text-primary font-semibold">Réglé (virement)</strong></span>
+<span class="text-[10px] font-label">Reste 0 €</span>
+</div>
+</div>
+<!-- Envelope 3 : Restaurants & Sorties (42% Green) -->
+<div class="p-3.5 rounded-xl border border-outline-variant/25 bg-surface-container-lowest hover:border-outline-variant/50 transition-colors">
+<div class="flex items-center justify-between mb-2">
+<div class="flex items-center gap-2">
+<div class="w-7 h-7 rounded-lg bg-surface-container text-on-surface flex items-center justify-center">
+<span class="material-symbols-outlined text-[16px]" data-icon="restaurant">restaurant</span>
+</div>
+<span class="font-headline font-bold text-xs text-on-surface">Restaurants &amp; Sorties</span>
+</div>
+<span class="px-2 py-0.5 rounded text-[10px] font-label font-bold bg-primary-container text-on-primary-container">42%</span>
+</div>
+<div class="flex items-baseline justify-between text-xs mb-1.5">
+<span class="font-headline font-bold text-sm text-on-surface">84,00 €</span>
+<span class="text-on-surface-variant text-[11px]">sur 200,00 €</span>
+</div>
+<!-- Gauge bar: Green < 75% -->
+<div class="w-full bg-surface-container h-2 rounded-full overflow-hidden mb-2">
+<div class="bg-primary h-full rounded-full" style="width: 42%;"></div>
+</div>
+<div class="flex items-center justify-between text-[11px] text-on-surface-variant">
+<span>Reste : <strong class="text-primary font-semibold">116,00 €</strong></span>
+<span class="text-[10px] font-label text-primary font-bold">Marge haute</span>
+</div>
+</div>
+<!-- Envelope 4 : Transport & Carburant (60% Green) -->
+<div class="p-3.5 rounded-xl border border-outline-variant/25 bg-surface-container-lowest hover:border-outline-variant/50 transition-colors">
+<div class="flex items-center justify-between mb-2">
+<div class="flex items-center gap-2">
+<div class="w-7 h-7 rounded-lg bg-surface-container text-on-surface flex items-center justify-center">
+<span class="material-symbols-outlined text-[16px]" data-icon="directions_car">directions_car</span>
+</div>
+<span class="font-headline font-bold text-xs text-on-surface">Transport &amp; Carburant</span>
+</div>
+<span class="px-2 py-0.5 rounded text-[10px] font-label font-bold bg-primary-container text-on-primary-container">60%</span>
+</div>
+<div class="flex items-baseline justify-between text-xs mb-1.5">
+<span class="font-headline font-bold text-sm text-on-surface">150,00 €</span>
+<span class="text-on-surface-variant text-[11px]">sur 250,00 €</span>
+</div>
+<div class="w-full bg-surface-container h-2 rounded-full overflow-hidden mb-2">
+<div class="bg-primary h-full rounded-full" style="width: 60%;"></div>
+</div>
+<div class="flex items-center justify-between text-[11px] text-on-surface-variant">
+<span>Reste : <strong class="text-on-surface font-semibold">100,00 €</strong></span>
+<span class="text-[10px] font-label">1 plein estimé</span>
+</div>
+</div>
+<!-- Envelope 5 : Énergie & Fibre (78% Amber) -->
+<div class="p-3.5 rounded-xl border border-outline-variant/25 bg-surface-container-lowest hover:border-outline-variant/50 transition-colors">
+<div class="flex items-center justify-between mb-2">
+<div class="flex items-center gap-2">
+<div class="w-7 h-7 rounded-lg bg-surface-container text-on-surface flex items-center justify-center">
+<span class="material-symbols-outlined text-[16px]" data-icon="bolt">bolt</span>
+</div>
+<span class="font-headline font-bold text-xs text-on-surface">Énergie &amp; Fibre</span>
+</div>
+<span class="px-2 py-0.5 rounded text-[10px] font-label font-bold bg-amber-100 text-amber-800">78%</span>
+</div>
+<div class="flex items-baseline justify-between text-xs mb-1.5">
+<span class="font-headline font-bold text-sm text-on-surface">109,20 €</span>
+<span class="text-on-surface-variant text-[11px]">sur 140,00 €</span>
+</div>
+<div class="w-full bg-surface-container h-2 rounded-full overflow-hidden mb-2">
+<div class="bg-amber-500 h-full rounded-full" style="width: 78%;"></div>
+</div>
+<div class="flex items-center justify-between text-[11px] text-on-surface-variant">
+<span>Reste : <strong class="text-on-surface font-semibold">30,80 €</strong></span>
+<span class="text-[10px] font-label">Régularisé</span>
+</div>
+</div>
+<!-- Envelope 6 : Abonnements & Web (105% RED DÉPASSÉ) -->
+<div class="p-3.5 rounded-xl border border-error/40 bg-error/5 hover:border-error transition-colors">
+<div class="flex items-center justify-between mb-2">
+<div class="flex items-center gap-2">
+<div class="w-7 h-7 rounded-lg bg-error-container text-on-error-container flex items-center justify-center">
+<span class="material-symbols-outlined text-[16px]" data-icon="warning">warning</span>
+</div>
+<span class="font-headline font-bold text-xs text-on-surface">Abonnements &amp; Web</span>
+</div>
+<!-- Red Badge >= 100% -->
+<span class="px-2 py-0.5 rounded text-[10px] font-label font-bold bg-error text-on-error">105% DÉPASSÉ</span>
+</div>
+<div class="flex items-baseline justify-between text-xs mb-1.5">
+<span class="font-headline font-bold text-sm text-error">52,50 €</span>
+<span class="text-on-surface-variant text-[11px]">sur 50,00 €</span>
+</div>
+<!-- Semantic Gauge: Red -->
+<div class="w-full bg-error-container/40 h-2 rounded-full overflow-hidden mb-2">
+<div class="bg-error h-full rounded-full" style="width: 100%;"></div>
+</div>
+<div class="flex items-center justify-between text-[11px]">
+<span class="text-error font-semibold flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[13px]" data-icon="trending_down">trending_down</span>
+                  Alerte : -2,50 €
+                </span>
+<span class="text-[10px] font-label text-on-surface-variant">Surcoût résolu</span>
+</div>
+</div>
+</div>
+<!-- Bottom AI Optimization Banner -->
+<div class="p-3.5 rounded-xl bg-secondary-container/40 border border-secondary/20 flex items-center justify-between gap-3">
+<div class="flex items-center gap-2.5">
+<div class="w-8 h-8 rounded-lg bg-secondary text-on-secondary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[18px]" data-icon="auto_awesome">auto_awesome</span>
+</div>
+<p class="text-xs font-body text-on-surface">
+<strong class="font-headline text-secondary">Astuce Chef Budget :</strong> Réallouez 20,00 € de l'enveloppe Sorties vers Abonnements pour rééquilibrer à 0 €.
+              </p>
+</div>
+<button class="px-3 py-1.5 rounded-lg bg-secondary text-on-secondary font-headline font-semibold text-xs shrink-0 shadow-sm hover:opacity-90 active:scale-95 transition-all">
+              Appliquer
+            </button>
+</div>
+</div>
+<!-- =================================================================== -->
+<!-- RIGHT COLUMN: ALERTS & TRANSACTIONS (5 Colonnes)                    -->
+<!-- =================================================================== -->
+<div class="col-span-5 space-y-6">
+<!-- BLOC 1 : ALERTES RÉSERVE & DLC (< 3 jours) -->
+<div class="bg-surface-container-lowest p-5 rounded-xl border border-outline-variant/30 shadow-[0_2px_8px_rgba(0,0,0,0.02)] space-y-4">
+<div class="flex items-center justify-between pb-2 border-b border-outline-variant/20">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-error text-[20px]" data-icon="notifications_active">notifications_active</span>
+<h3 class="font-headline font-bold text-sm text-on-surface">Alertes Réserve &amp; DLC (&lt; 3 jours)</h3>
+</div>
+<span class="px-2 py-0.5 rounded-full text-[10px] font-label font-bold bg-error-container text-on-error-container">
+                3 alertes
+              </span>
+</div>
+<div class="space-y-2.5">
+<!-- Item 1 : Lait Demi-Écrémé -->
+<div class="p-2.5 rounded-lg bg-surface-container-low border border-outline-variant/20 flex items-center justify-between">
+<div class="flex items-center gap-2.5">
+<div class="w-7 h-7 rounded-md bg-error-container/30 text-error flex items-center justify-center">
+<span class="material-symbols-outlined text-[15px]" data-icon="local_drink">local_drink</span>
+</div>
+<div>
+<h4 class="font-headline font-bold text-xs text-on-surface">Lait Demi-Écrémé 1L</h4>
+<p class="text-[11px] text-error font-medium">DLC 17 Nov • Stock : 1 bouteille</p>
+</div>
+</div>
+<button class="px-2.5 py-1 rounded-md bg-surface-container text-primary font-headline text-[11px] font-bold hover:bg-primary-container hover:text-on-primary-container transition-colors flex items-center gap-1">
+<span class="material-symbols-outlined text-[13px]" data-icon="compare_arrows">compare_arrows</span>
+<span>5 km</span>
+</button>
+</div>
+<!-- Item 2 : Huile de Tournesol -->
+<div class="p-2.5 rounded-lg bg-surface-container-low border border-outline-variant/20 flex items-center justify-between">
+<div class="flex items-center gap-2.5">
+<div class="w-7 h-7 rounded-md bg-amber-100 text-amber-800 flex items-center justify-center">
+<span class="material-symbols-outlined text-[15px]" data-icon="opacity">opacity</span>
+</div>
+<div>
+<h4 class="font-headline font-bold text-xs text-on-surface">Huile de Tournesol 1L</h4>
+<p class="text-[11px] text-amber-700 font-medium">Seuil critique : 1 unité restante</p>
+</div>
+</div>
+<span class="text-[10px] font-label font-bold text-amber-800 bg-amber-100 px-2 py-0.5 rounded">
+                  Stock bas
+                </span>
+</div>
+<!-- Item 3 : Pâtes Penne -->
+<div class="p-2.5 rounded-lg bg-surface-container-low border border-outline-variant/20 flex items-center justify-between">
+<div class="flex items-center gap-2.5">
+<div class="w-7 h-7 rounded-md bg-surface-container text-on-surface flex items-center justify-center">
+<span class="material-symbols-outlined text-[15px]" data-icon="dinner_dining">dinner_dining</span>
+</div>
+<div>
+<h4 class="font-headline font-bold text-xs text-on-surface">Pâtes Penne 500g</h4>
+<p class="text-[11px] text-on-surface-variant">Rupture estimée dans 9j</p>
+</div>
+</div>
+<span class="text-[10px] font-label text-on-surface-variant bg-surface-container px-2 py-0.5 rounded">
+                  À prévoir
+                </span>
+</div>
+</div>
+<!-- Mini-Carte Chef Réserve IA -->
+<div class="p-3 rounded-lg bg-gradient-to-r from-secondary-container/40 to-primary-container/30 border border-secondary/20 flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-[18px]" data-icon="soup_kitchen">soup_kitchen</span>
+<p class="text-[11px] font-body text-on-surface">
+<strong class="font-headline text-secondary">2 recettes</strong> dispo avec stocks urgents (Poulet DG, Gratin Penne)
+                </p>
+</div>
+<button class="px-2.5 py-1 rounded bg-secondary text-on-secondary font-headline text-[11px] font-bold hover:opacity-90 transition-opacity">
+                Cuisiner
+              </button>
+</div>
+</div>
+<!-- BLOC 2 : DERNIÈRES TRANSACTIONS (Novembre 2026) -->
+<div class="bg-surface-container-lowest p-5 rounded-xl border border-outline-variant/30 shadow-[0_2px_8px_rgba(0,0,0,0.02)] space-y-4">
+<div class="flex items-center justify-between pb-2 border-b border-outline-variant/20">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]" data-icon="receipt_long">receipt_long</span>
+<h3 class="font-headline font-bold text-sm text-on-surface">Dernières Transactions</h3>
+</div>
+<span class="text-[11px] font-label text-on-surface-variant font-medium">Novembre 2026</span>
+</div>
+<!-- Compact Search Bar -->
+<div class="relative">
+<span class="material-symbols-outlined absolute left-2.5 top-2 text-[16px] text-on-surface-variant" data-icon="search">search</span>
+<input class="w-full pl-8 pr-3 py-1.5 rounded-lg bg-surface-container-low border border-outline-variant/30 text-xs font-body text-on-surface placeholder:text-on-surface-variant/60 focus:outline-none focus:border-primary" placeholder="Rechercher ticket, enseigne, libellé..." type="text"/>
+</div>
+<!-- Transaction Rows -->
+<div class="divide-y divide-outline-variant/15">
+<!-- Tx 1: E.Leclerc Drive -->
+<div class="py-2.5 flex items-center justify-between first:pt-0">
+<div class="flex items-center gap-2.5">
+<div class="w-8 h-8 rounded-lg bg-surface-container text-primary flex items-center justify-center font-bold text-xs">
+<span class="material-symbols-outlined text-[16px]" data-icon="store">store</span>
+</div>
+<div>
+<h4 class="font-headline font-bold text-xs text-on-surface">E.Leclerc Drive 5 km</h4>
+<p class="text-[10px] text-on-surface-variant flex items-center gap-1">
+<span>Hier à 18:30</span>
+<span>•</span>
+<span class="text-primary font-medium flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[11px]" data-icon="verified">verified</span> Ticket PDF vérifié
+                      </span>
+</p>
+</div>
+</div>
+<span class="font-headline font-bold text-xs text-on-surface">-48,50 €</span>
+</div>
+<!-- Tx 2: Abonnement Fibre -->
+<div class="py-2.5 flex items-center justify-between">
+<div class="flex items-center gap-2.5">
+<div class="w-8 h-8 rounded-lg bg-surface-container text-secondary flex items-center justify-center font-bold text-xs">
+<span class="material-symbols-outlined text-[16px]" data-icon="router">router</span>
+</div>
+<div>
+<h4 class="font-headline font-bold text-xs text-on-surface">Abonnement Fibre</h4>
+<p class="text-[10px] text-on-surface-variant flex items-center gap-1">
+<span>05 Nov 2026</span>
+<span>•</span>
+<span>Prélèvement auto</span>
+</p>
+</div>
+</div>
+<span class="font-headline font-bold text-xs text-on-surface">-39,99 €</span>
+</div>
+<!-- Tx 3: Boulangerie Locale -->
+<div class="py-2.5 flex items-center justify-between last:pb-0">
+<div class="flex items-center gap-2.5">
+<div class="w-8 h-8 rounded-lg bg-surface-container text-on-surface flex items-center justify-center font-bold text-xs">
+<span class="material-symbols-outlined text-[16px]" data-icon="bakery_dining">bakery_dining</span>
+</div>
+<div>
+<h4 class="font-headline font-bold text-xs text-on-surface">Boulangerie Locale</h4>
+<p class="text-[10px] text-on-surface-variant flex items-center gap-1">
+<span>04 Nov 2026</span>
+<span>•</span>
+<span>Sans contact CB</span>
+</p>
+</div>
+</div>
+<span class="font-headline font-bold text-xs text-on-surface">-4,20 €</span>
+</div>
+</div>
+<!-- Footer View All Link -->
+<div class="pt-2 border-t border-outline-variant/15 text-center">
+<a class="text-xs font-headline font-bold text-primary hover:underline inline-flex items-center gap-1" href="#transactions">
+<span>Voir le grand livre des écritures</span>
+<span class="material-symbols-outlined text-[14px]" data-icon="arrow_forward">arrow_forward</span>
+</a>
+</div>
+</div>
+</div>
+</section>
+</main>
+</div>
+</body></html>

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+
+<html class="light" lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Ma Réserve Domestique - Sovereign Ledger</title>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@500;600;700;800&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-tertiary-container": "#002d47",
+            "on-error-container": "#6e0a12",
+            "on-error": "#fff7f6",
+            "primary-fixed-dim": "#8ee4d9",
+            "secondary-container": "#e2dfff",
+            "on-secondary": "#fbf7ff",
+            "error-dim": "#67040d",
+            "tertiary-fixed-dim": "#40a2e7",
+            "on-secondary-container": "#3f33d6",
+            "surface-container-low": "#f0f4f7",
+            "error": "#a83836",
+            "tertiary-container": "#51b0f6",
+            "surface-dim": "#d4dbdf",
+            "on-primary": "#e2fffa",
+            "secondary": "#4e45e4",
+            "tertiary-fixed": "#51b0f6",
+            "on-primary-fixed": "#004842",
+            "on-surface": "#2c3437",
+            "inverse-primary": "#a7fef3",
+            "surface": "#f7f9fb",
+            "on-secondary-fixed": "#2a13c5",
+            "on-surface-variant": "#596064",
+            "inverse-surface": "#0b0f10",
+            "error-container": "#fa746f",
+            "on-tertiary": "#f6f9ff",
+            "surface-variant": "#dce4e8",
+            "inverse-on-surface": "#9a9d9f",
+            "secondary-dim": "#4135d8",
+            "tertiary-dim": "#005886",
+            "outline": "#747c80",
+            "surface-tint": "#006b63",
+            "on-background": "#2c3437",
+            "on-secondary-fixed-variant": "#4a40e0",
+            "on-primary-fixed-variant": "#006760",
+            "surface-container-lowest": "#ffffff",
+            "on-tertiary-fixed-variant": "#003655",
+            "surface-bright": "#f7f9fb",
+            "secondary-fixed-dim": "#d2d0ff",
+            "outline-variant": "#acb3b7",
+            "surface-container-high": "#e3e9ed",
+            "secondary-fixed": "#e2dfff",
+            "on-primary-container": "#005c56",
+            "on-tertiary-fixed": "#000d19",
+            "primary-fixed": "#9cf2e8",
+            "tertiary": "#006499",
+            "background": "#f7f9fb",
+            "surface-container": "#eaeff2",
+            "primary-dim": "#005e57",
+            "primary-container": "#9cf2e8",
+            "surface-container-highest": "#dce4e8",
+            "primary": "#006b63"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "fontFamily": {
+            "headline": ["Plus Jakarta Sans"],
+            "display": ["Plus Jakarta Sans"],
+            "body": ["Inter"],
+            "label": ["Space Grotesk"]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-background text-on-background font-body antialiased pb-28 selection:bg-primary-container selection:text-on-primary-container">
+<!-- TopAppBar -->
+<header class="sticky top-0 z-40 bg-surface dark:bg-inverse-surface w-full">
+<div class="flex justify-between items-center w-full px-4 py-3 max-w-7xl mx-auto">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-headline font-bold text-sm overflow-hidden shadow-sm">
+<img class="w-full h-full object-cover" data-alt="A detailed professional portrait photo of a user avatar with warm lighting, neutral background, modern flat design vector style, professional financial user profile picture." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAjmTfIoN8wpEnQsyGAdvsGa1Rj9WQwQPmhHzYNukVj1iB1eIw3N-L2rPTKELPzlxuFdI2a4Y_JSQBnTu2YkXkmkL5I_-qUMOLOPBF8vAmPZt-swMzMbxzk2p5IU46zw8O5DdghOf5F_oH3Ab35f1ty-4ZaA6xCowBIh1-tGij6fwmOEjCavy_xpfBIYMmJ6ZV0QVY_tbtEtijAG-g-Nm0X5xytB8CuQD8bJwBZ4rQosRgVhE6JnxSFEX8bKnA7afqQWx-w9JTsQkI"/>
+</div>
+<div>
+<h1 class="text-lg font-headline font-bold text-primary dark:text-inverse-primary leading-tight">Novembre 2026</h1>
+<p class="text-xs text-on-surface-variant font-label">Réserve Domestique</p>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<button class="w-10 h-10 rounded-full flex items-center justify-center text-on-surface-variant hover:bg-surface-container transition-all">
+<span class="material-symbols-outlined text-xl">notifications</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Month Navigation Selector Bar -->
+<div class="bg-surface-container-low border-y border-surface-variant/40 px-4 py-2 mb-4">
+<div class="max-w-7xl mx-auto flex items-center justify-between text-xs font-label text-on-surface-variant">
+<button class="flex items-center gap-1 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-sm">chevron_left</span>
+<span>Octobre 2026</span>
+</button>
+<span class="font-bold text-primary uppercase tracking-wider">Mois Actif</span>
+<button class="flex items-center gap-1 hover:text-primary transition-colors">
+<span>Décembre 2026</span>
+<span class="material-symbols-outlined text-sm">chevron_right</span>
+</button>
+</div>
+</div>
+<main class="max-w-xl mx-auto px-4 space-y-4"><div class="space-y-4 pb-16"><div class="flex items-center gap-2"><div class="relative flex-1"><span class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none text-outline"><span class="material-symbols-outlined text-xl">search</span></span><input class="w-full pl-10 pr-4 py-2.5 bg-surface-container-lowest border border-surface-variant rounded-xl text-sm text-on-surface placeholder:text-outline focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all shadow-sm" placeholder="Rechercher parmi 38 produits..." type="text"/></div><button class="h-11 px-4 bg-primary text-on-primary rounded-xl flex items-center justify-center gap-2 font-label text-sm font-semibold hover:bg-primary-dim transition-all shadow-sm active:scale-98"><span class="material-symbols-outlined text-xl">barcode_scanner</span><span class="hidden sm:inline">Scan</span></button></div><div class="flex items-center gap-2 overflow-x-auto pb-1 no-scrollbar"><button class="px-3.5 py-1.5 rounded-xl bg-secondary-container text-on-secondary-container text-xs font-label font-bold whitespace-nowrap shadow-sm transition-all">Tous (38)</button><button class="px-3.5 py-1.5 rounded-xl bg-surface-container-lowest text-on-surface-variant border border-surface-variant text-xs font-label font-medium whitespace-nowrap hover:bg-surface-container transition-all">À racheter (4)</button><button class="px-3.5 py-1.5 rounded-xl bg-surface-container-lowest text-on-surface-variant border border-surface-variant text-xs font-label font-medium whitespace-nowrap hover:bg-surface-container transition-all">Crèmerie (8)</button><button class="px-3.5 py-1.5 rounded-xl bg-surface-container-lowest text-on-surface-variant border border-surface-variant text-xs font-label font-medium whitespace-nowrap hover:bg-surface-container transition-all">Épicerie sèche (14)</button><button class="px-3.5 py-1.5 rounded-xl bg-surface-container-lowest text-on-surface-variant border border-surface-variant text-xs font-label font-medium whitespace-nowrap hover:bg-surface-container transition-all">Entretien (6)</button><button class="px-3.5 py-1.5 rounded-xl bg-surface-container-lowest text-on-surface-variant border border-surface-variant text-xs font-label font-medium whitespace-nowrap hover:bg-surface-container transition-all">Boissons (10)</button></div><div class="space-y-3"><div class="bg-surface-container-lowest rounded-xl border border-surface-variant/60 shadow-sm overflow-hidden"><div class="flex items-center justify-between p-3 bg-surface-container-low cursor-pointer"><div class="flex items-center gap-2"><span class="material-symbols-outlined text-error text-lg">error</span><h3 class="font-headline font-bold text-sm text-on-surface">À racheter en priorité (4)</h3></div><span class="material-symbols-outlined text-on-surface-variant text-lg">expand_more</span></div><div class="divide-y divide-surface-variant/40"><div class="flex items-center justify-between px-3 py-2.5 h-[52px]"><div class="flex items-center gap-3 overflow-hidden"><div class="w-2 h-2 rounded-full bg-error shrink-0"></div><div class="truncate"><h4 class="text-xs font-headline font-bold text-on-surface truncate">Lait Demi-Écrémé 1L</h4><p class="text-[10px] text-on-surface-variant truncate">1L • Rupture IA 1j</p></div></div><div class="flex items-center gap-2 shrink-0"><span class="px-2 py-0.5 rounded bg-error-container/30 text-on-error-container text-[9px] font-label font-bold">CRITIQUE</span><div class="flex items-center gap-1 bg-surface-container px-1 py-0.5 rounded-lg"><button class="w-7 h-7 rounded bg-surface-container-lowest text-on-surface font-bold text-xs flex items-center justify-center shadow-sm hover:bg-error-container transition-all">-</button><span class="w-5 text-center font-headline font-bold text-xs">1</span><button class="w-7 h-7 rounded bg-surface-container-lowest text-on-surface font-bold text-xs flex items-center justify-center shadow-sm hover:bg-primary-container transition-all">+</button></div></div></div><div class="flex items-center justify-between px-3 py-2.5 h-[52px]"><div class="flex items-center gap-3 overflow-hidden"><div class="w-2 h-2 rounded-full bg-error shrink-0"></div><div class="truncate"><h4 class="text-xs font-headline font-bold text-on-surface truncate">Huile de Tournesol 1L</h4><p class="text-[10px] text-on-surface-variant truncate">1L • Rupture IA 2j</p></div></div><div class="flex items-center gap-2 shrink-0"><span class="px-2 py-0.5 rounded bg-error-container/30 text-on-error-container text-[9px] font-label font-bold">CRITIQUE</span><div class="flex items-center gap-1 bg-surface-container px-1 py-0.5 rounded-lg"><button class="w-7 h-7 rounded bg-surface-container-lowest text-on-surface font-bold text-xs flex items-center justify-center shadow-sm hover:bg-error-container transition-all">-</button><span class="w-5 text-center font-headline font-bold text-xs">1</span><button class="w-7 h-7 rounded bg-surface-container-lowest text-on-surface font-bold text-xs flex items-center justify-center shadow-sm hover:bg-primary-container transition-all">+</button></div></div></div></div></div><div class="bg-surface-container-lowest rounded-xl border border-surface-variant/60 shadow-sm overflow-hidden"><div class="flex items-center justify-between p-3 bg-surface-container-low cursor-pointer"><div class="flex items-center gap-2"><span class="material-symbols-outlined text-tertiary text-lg">schedule</span><h3 class="font-headline font-bold text-sm text-on-surface">Crèmerie &amp; Frais (8)</h3></div><span class="material-symbols-outlined text-on-surface-variant text-lg">expand_more</span></div><div class="divide-y divide-surface-variant/40"><div class="flex items-center justify-between px-3 py-2.5 h-[52px]"><div class="flex items-center gap-3 overflow-hidden"><div class="w-2 h-2 rounded-full bg-tertiary shrink-0"></div><div class="truncate"><h4 class="text-xs font-headline font-bold text-on-surface truncate">Beurre Doux 250g</h4><p class="text-[10px] text-on-surface-variant truncate">250g • Stock normal</p></div></div><div class="flex items-center gap-2 shrink-0"><span class="px-2 py-0.5 rounded bg-tertiary-container/30 text-on-tertiary-container text-[9px] font-label font-bold">NORMAL</span><div class="flex items-center gap-1 bg-surface-container px-1 py-0.5 rounded-lg"><button class="w-7 h-7 rounded bg-surface-container-lowest text-on-surface font-bold text-xs flex items-center justify-center shadow-sm hover:bg-error-container transition-all">-</button><span class="w-5 text-center font-headline font-bold text-xs">3</span><button class="w-7 h-7 rounded bg-surface-container-lowest text-on-surface font-bold text-xs flex items-center justify-center shadow-sm hover:bg-primary-container transition-all">+</button></div></div></div></div></div><div class="bg-surface-container-lowest rounded-xl border border-surface-variant/60 shadow-sm overflow-hidden"><div class="flex items-center justify-between p-3 bg-surface-container-low cursor-pointer"><div class="flex items-center gap-2"><span class="material-symbols-outlined text-primary text-lg">inventory_2</span><h3 class="font-headline font-bold text-sm text-on-surface">Épicerie Sèche (14)</h3></div><span class="material-symbols-outlined text-on-surface-variant text-lg">expand_more</span></div><div class="divide-y divide-surface-variant/40"><div class="flex items-center justify-between px-3 py-2.5 h-[52px]"><div class="flex items-center gap-3 overflow-hidden"><div class="w-2 h-2 rounded-full bg-primary shrink-0"></div><div class="truncate"><h4 class="text-xs font-headline font-bold text-on-surface truncate">Pâtes Penne 500g</h4><p class="text-[10px] text-on-surface-variant truncate">500g • Rupture IA 9j</p></div></div><div class="flex items-center gap-2 shrink-0"><span class="px-2 py-0.5 rounded bg-primary-container/30 text-on-primary-container text-[9px] font-label font-bold">STABLE</span><div class="flex items-center gap-1 bg-surface-container px-1 py-0.5 rounded-lg"><button class="w-7 h-7 rounded bg-surface-container-lowest text-on-surface font-bold text-xs flex items-center justify-center shadow-sm hover:bg-error-container transition-all">-</button><span class="w-5 text-center font-headline font-bold text-xs">3</span><button class="w-7 h-7 rounded bg-surface-container-lowest text-on-surface font-bold text-xs flex items-center justify-center shadow-sm hover:bg-primary-container transition-all">+</button></div></div></div></div></div></div></div><button class="fixed right-4 bottom-20 z-40 w-12 h-12 rounded-full bg-[#0F766E] text-white flex items-center justify-center shadow-lg hover:bg-primary-dim transition-all active:scale-98"><span class="material-symbols-outlined text-2xl">add</span></button></main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-2 py-2 bg-surface-container-lowest dark:bg-inverse-surface shadow-lg dark:shadow-none">
+<!-- Tab 1: Budget -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant p-1.5 hover:bg-surface-container dark:hover:bg-surface-container-high rounded-xl transition-all" href="#">
+<span class="material-symbols-outlined text-xl">account_balance_wallet</span>
+<span class="text-xs font-label mt-0.5">Budget</span>
+</a>
+<!-- Tab 2: Réserve (Active) -->
+<a class="flex flex-col items-center justify-center bg-secondary-container dark:bg-secondary text-on-secondary-container dark:text-on-secondary rounded-xl p-1.5 transition-all" href="#">
+<span class="material-symbols-outlined text-xl" style="font-variation-settings: 'FILL' 1;">inventory_2</span>
+<span class="text-xs font-headline mt-0.5 font-bold">Réserve</span>
+</a>
+<!-- Tab 3: + Dépense -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant p-1.5 hover:bg-surface-container dark:hover:bg-surface-container-high rounded-xl transition-all" href="#">
+<span class="material-symbols-outlined text-xl">add_circle</span>
+<span class="text-xs font-label mt-0.5">+ Dépense</span>
+</a>
+<!-- Tab 4: Comparateur -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant p-1.5 hover:bg-surface-container dark:hover:bg-surface-container-high rounded-xl transition-all" href="#">
+<span class="material-symbols-outlined text-xl">storefront</span>
+<span class="text-xs font-label mt-0.5">Comparateur</span>
+</a>
+<!-- Tab 5: Coach IA -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant p-1.5 hover:bg-surface-container dark:hover:bg-surface-container-high rounded-xl transition-all" href="#">
+<span class="material-symbols-outlined text-xl">smart_toy</span>
+<span class="text-xs font-label mt-0.5">Coach IA</span>
+</a>
+</nav>
+</body></html>
